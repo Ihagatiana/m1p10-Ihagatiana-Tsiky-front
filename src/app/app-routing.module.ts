@@ -4,19 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'client',
-    canMatch: [],
+    canActivate: [],
     loadChildren: () =>
       import('./client/client.module').then((module) => module.ClientModule),
   },
   {
     path: 'manager',
-    canMatch: [],
+    canActivate: [],
     loadChildren: () =>
       import('./manager/manager.module').then((module) => module.ManagerModule),
   },
   {
     path: 'employee',
-    canMatch: [],
+    canActivate: [],
     loadChildren: () =>
       import('./employee/employee.module').then(
         (module) => module.EmployeeModule
