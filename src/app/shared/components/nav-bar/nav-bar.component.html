@@ -1,0 +1,72 @@
+<nav class="flex justify-evenly px-2 py-3 bg-white shadow-md mb-3 h-28">
+  <div class="px-4 flex items-center">
+    <div class="lg:w-[700px] mx-auto items-center">
+      <a class="text-sm italic inline-block mr-4 py-2 uppercase" routerLink="/">
+        Salon de beauté (LOGO)
+      </a>
+    </div>
+    <div class="hidden md:flex lg:flex items-center">
+      <ul class="md:flex md:flex-row lg:flex lg:flex-row list-none ml-auto">
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center uppercase italic hover:opacity-75 hover:underline hover:text-red-300"
+            routerLink="accueil"
+            routerLinkActive="active-link"
+            activ
+          >
+            Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center uppercase italic hover:opacity-75 hover:underline hover:text-red-300"
+            routerLink="services"
+            routerLinkActive="active-link"
+          >
+            Services
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center uppercase italic hover:opacity-75 hover:underline hover:text-red-300"
+            routerLink="#"
+            routerLinkActive="active-link"
+          >
+            Rendez vous
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center uppercase italic hover:opacity-75 hover:underline hover:text-red-300"
+            routerLink="#"
+            routerLinkActive="active-link"
+          >
+            À propos
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex md:hidden lg:hidden items-center justify-center">
+      <app-dropdown label="Menu">
+        <a
+          routerLink="/"
+          class="text-sm py-2 italic px-4 block w-full bg-transparent"
+        >
+          Accueil
+        </a>
+        <a
+          routerLink="services"
+          class="text-sm py-2 italic px-4 block w-full bg-transparent"
+        >
+          Services
+        </a>
+        <a
+          href="#"
+          class="text-sm py-2 italic px-4 block w-full bg-transparent"
+        >
+          Se connecter
+        </a>
+      </app-dropdown>
+    </div>
+  </div>
+</nav>
