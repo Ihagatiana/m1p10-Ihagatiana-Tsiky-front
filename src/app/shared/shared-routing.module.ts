@@ -11,6 +11,7 @@ const routes: Routes = [
     component: PublicLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'accueil', component: HomeComponent },
       { path: 'services', component: ServicesComponent },
     ],
   },
