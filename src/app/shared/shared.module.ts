@@ -8,6 +8,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { PaperComponent } from '../components/paper/paper.component';
 import { SectionComponent } from '../components/section/section.component';
+import { CardComponent } from '../components/card/card.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { SectionComponent } from '../components/section/section.component';
     SharedRoutingModule,
     PaperComponent,
     SectionComponent,
+    CardComponent,
   ],
   declarations: [
     NavBarComponent,
