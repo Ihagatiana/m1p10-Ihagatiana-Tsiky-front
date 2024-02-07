@@ -3,6 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    canActivate: [],
+    loadChildren: () =>
+      import('./shared/shared.module').then((module) => module.SharedModule),
+  },
+  {
     path: 'client',
     canActivate: [],
     loadChildren: () =>
