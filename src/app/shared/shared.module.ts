@@ -6,9 +6,16 @@ import { PublicLayoutComponent } from './components/public-layout/public-layout.
 import { HomeComponent } from './pages/home/home.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { PaperComponent } from '../components/paper/paper.component';
+import { SectionComponent } from '../components/section/section.component';
 
 @NgModule({
-  imports: [CommonModule, SharedRoutingModule],
+  imports: [
+    CommonModule,
+    SharedRoutingModule,
+    PaperComponent,
+    SectionComponent,
+  ],
   declarations: [
     NavBarComponent,
     PublicLayoutComponent,
