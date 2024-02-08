@@ -1,16 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Service, ServiceService } from '../service.service';
+import { Component, Input } from '@angular/core';
+import { Service, ServicesService } from '../../services.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  selector: 'app-services-list',
+  templateUrl: './services-list.component.html',
+  styleUrls: ['./services-list.component.scss'],
 })
-export class ListComponent implements OnInit {
+export class ServicesListComponent {
   loading = false;
   @Input() canSwitchView = false;
   services: Service[] = [];
-  constructor(private readonly service: ServiceService) {}
+  constructor(private readonly service: ServicesService) {}
   ngOnInit(): void {
     this.fetchAll();
   }

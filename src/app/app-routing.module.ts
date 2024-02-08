@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     canActivate: [],
     loadChildren: () =>
-      import('./shared/shared.module').then((module) => module.SharedModule),
+      import('./public/public.module').then((module) => module.PublicModule),
   },
   {
     path: 'client',
