@@ -1,29 +1,39 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { SharedRoutingModule } from './shared-routing.module';
-import { PublicLayoutComponent } from './components/public-layout/public-layout.component';
-import { HomeComponent } from './pages/home/home.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { PaperComponent } from '../components/paper/paper.component';
 import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { ServicesListComponent } from './components/services/services-list/services-list.component';
+import { ServicesFormComponent } from './components/services/services-form/services-form.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ServicesService } from './components/services.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedRoutingModule,
     PaperComponent,
     SectionComponent,
     CardComponent,
     LoaderComponent,
+    HttpClientModule,
+    RouterModule
   ],
   declarations: [
     NavBarComponent,
-    PublicLayoutComponent,
-    HomeComponent,
     DropdownComponent,
+    ServicesListComponent,
+    ServicesFormComponent,
   ],
+  exports: [
+    NavBarComponent,
+    DropdownComponent,
+    ServicesListComponent,
+    ServicesFormComponent,
+  ],
+  providers: [ServicesService],
 })
 export class SharedModule {}
