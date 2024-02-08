@@ -1,1 +1,104 @@
-<p>home works!</p>
+<app-paper>
+  <app-section title="Section 1" className="bg-red-300 ">
+    <div>
+      <ul class="flex justify-evenly">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+      </ul>
+    </div>
+  </app-section>
+  <app-section title="Section 2" className="bg-slate-300 px-5">
+    <div class="grid grid-cols-7">
+      <div class="border border-black col-span-4 h-28">Image ohatra</div>
+      <div>Text beee</div>
+    </div>
+  </app-section>
+  <app-section title="Section 3 " className="bg-gray-100">
+    <div class="grid grid-cols-7">
+      <div class="col-span-4">Otranle ambony fa mifamadika</div>
+      <div class="border border-black h-28">Image ohatra</div>
+    </div>
+  </app-section>
+  <app-section title="Section 4" className="bg-red-300 ">
+    <div>
+      <ul class="flex justify-evenly">
+        <li>
+          <img
+            src="https://www.kasandbox.org/programming-images/avatars/spunky-sam.png"
+            alt="img"
+          />
+        </li>
+        <li>
+          <img
+            src="https://www.kasandbox.org/programming-images/avatars/spunky-sam-green.png
+            "
+            alt="img"
+          />
+        </li>
+        <li>
+          <img
+            src="https://www.kasandbox.org/programming-images/avatars/purple-pi.png"
+            alt="img"
+          />
+        </li>
+        <li>
+          <img
+            src="https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"
+            alt="img"
+          />
+        </li>
+      </ul>
+    </div>
+  </app-section>
+
+  <app-section title="Cards" className="bg-white ">
+    <div>
+      <ul class="flex justify-evenly gap-4 px-4">
+        <li>
+          <app-card
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/spunky-sam.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
+        </li>
+        <li>
+          <app-card
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/spunky-sam-green.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
+        </li>
+        <li>
+          <app-card
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/purple-pi.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
+        </li>
+        <li>
+          <app-card
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
+        </li>
+      </ul>
+    </div>
+  </app-section>
+  <div class="relative">
+    <app-loader
+      [loading]="true"
+      spinnerClassName="!border-blue-300"
+    ></app-loader>
+  </div>
+</app-paper>

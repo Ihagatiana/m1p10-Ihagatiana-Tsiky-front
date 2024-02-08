@@ -1,0 +1,10 @@
+<div
+  [class]="'mx-14 rounded-md' + className"
+  [class.shadow-md]="elevation === 1"
+  [class.shadow-lg]="elevation === 2"
+  [class.shadow-xl]="elevation === 3"
+  [class.shadow-2xl]="elevation === 4"
+  [class.p-4]="padding"
+>
+  <ng-content></ng-content>
+</div>
