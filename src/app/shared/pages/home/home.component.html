@@ -67,26 +67,38 @@
         </li>
         <li>
           <app-card
-          imgUrl="https://www.kasandbox.org/programming-images/avatars/spunky-sam-green.png"
-          alt="img"
-          [content]="'<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'"
-        ></app-card>
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/spunky-sam-green.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
         </li>
         <li>
           <app-card
-          imgUrl="https://www.kasandbox.org/programming-images/avatars/purple-pi.png"
-          alt="img"
-          [content]="'<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'"
-        ></app-card>
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/purple-pi.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
         </li>
         <li>
           <app-card
-          imgUrl="https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"
-          alt="img"
-          [content]="'<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'"
-        ></app-card>
+            imgUrl="https://www.kasandbox.org/programming-images/avatars/purple-pi-teal.png"
+            alt="img"
+            [content]="
+              '<h1>One morning, when Gregor Samsa woke from troubled dreams.</h1>'
+            "
+          ></app-card>
         </li>
       </ul>
     </div>
   </app-section>
+  <div class="relative">
+    <app-loader
+      [loading]="true"
+      spinnerClassName="!border-blue-300"
+    ></app-loader>
+  </div>
 </app-paper>

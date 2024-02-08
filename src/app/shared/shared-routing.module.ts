@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PublicLayoutComponent } from './components/public-layout/public-layout.component';
-import { ServicesComponent } from './pages/services/services.component';
 
 const routes: Routes = [
   {
@@ -12,7 +11,13 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'accueil', component: HomeComponent },
-      { path: 'services', component: ServicesComponent },
+      {
+        path: 'services',
+        loadChildren: () =>
+          import('../services/services.module').then(
+            (module) => module.ServicesModule
+          ),
+      },
     ],
   },
 ];
