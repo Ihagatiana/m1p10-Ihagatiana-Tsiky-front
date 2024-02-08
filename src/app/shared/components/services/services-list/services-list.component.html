@@ -34,7 +34,7 @@
       </ul>
       <div *ngIf="displayMode === 'grid'" class="grid grid-cols-4 gap-4 px-8">
         <app-card
-          className="h-[420px] w-[395px] flex-col !text-start "
+          className="h-[500px] w-[395px] flex-col !text-start "
           *ngFor="let service of services"
           imgUrl="https://source.unsplash.com/user/c_v_r/1900x800"
         >
@@ -48,7 +48,7 @@
               service.duration.minutes === 0 ? "00" : service.duration.minutes
             }}</span
           >
-          <div class="flex text-sm max-h-60 overflow-y-hidden mx-6">
+          <div class="flex text-sm !h-80 !overflow-y-hidden mx-6">
             {{ service.description }}
           </div>
         </app-card>
