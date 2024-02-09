@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
@@ -31,9 +32,12 @@ export class ServicesService {
   }
 }
 
-export type Service = any & {
+export type Service = {
   id: number;
   name: string;
+  price: number;
+  duration: Time;
+  description: string;
 };
 
 export type UpdateServiceDto = Partial<Service>;
