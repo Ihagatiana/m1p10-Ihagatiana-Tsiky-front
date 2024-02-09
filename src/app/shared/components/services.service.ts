@@ -10,7 +10,7 @@ export class ServicesService {
   private base_url = environment.baseUrl;
   constructor(private readonly httpService: HttpClient) {}
   getAll() {
-    return this.httpService.get<Service[]>(`${this.base_url}/service`);
+    return this.httpService.get<Service[]>(`${this.base_url}/service/all`);
   }
 
   findOne(id: Service['id']) {
