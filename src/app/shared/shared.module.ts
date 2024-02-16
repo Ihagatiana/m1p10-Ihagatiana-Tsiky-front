@@ -11,6 +11,8 @@ import { ServicesListComponent } from './components/services/services-list/servi
 import { ServicesFormComponent } from './components/services/services-form/services-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesService } from './components/services.service';
+import { ModalComponent } from '../components/modal/modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -20,7 +22,10 @@ import { ServicesService } from './components/services.service';
     CardComponent,
     LoaderComponent,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ModalComponent,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   declarations: [
     NavBarComponent,

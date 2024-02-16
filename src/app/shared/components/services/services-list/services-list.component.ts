@@ -11,6 +11,7 @@ export class ServicesListComponent {
   @Input() canSwitchView = false;
   displayMode: 'list' | 'grid' = 'grid';
   services: Service[] = [];
+  showForm: boolean = false;
   constructor(private readonly service: ServicesService) {}
   ngOnInit(): void {
     this.fetchAll();
@@ -25,5 +26,9 @@ export class ServicesListComponent {
       this.services = data;
       this.loading = false;
     });
+  }
+
+  onToogleForm(value: boolean) {
+    this.showForm = value;
   }
 }

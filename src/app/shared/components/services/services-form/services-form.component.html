@@ -1,1 +1,72 @@
-<p>services-form works!</p>
+<app-loader
+  [loading]="loading"
+  spinnerClassName="!border-blue-300"
+></app-loader>
+<app-paper [padding]="true">
+  <form [formGroup]="form" class="!w-[400px]">
+    <div class="mb-4">
+      <label class="flex text-gray-700 text-sm font-bold mb-2" for="username">
+        Nom <span class="text-red-500">*</span>
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="name"
+        type="text"
+        placeholder="Nom"
+        required
+        formControlName="name"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="flex text-gray-700 text-sm font-bold mb-2" for="username">
+        Description <span class="text-red-500">*</span>
+      </label>
+      <textarea
+        name="description"
+        id="description"
+        required
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      ></textarea>
+    </div>
+    <div class="mb-4 grid grid-cols-2 gap-3">
+      <div>
+        <label class="flex text-gray-700 text-sm font-bold mb-2" for="username">
+          Durée <span class="text-red-500">*</span>
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="duration"
+          type="time"
+          required
+          formControlName="duration"
+        />
+      </div>
+      <div>
+        <label class="flex text-gray-700 text-sm font-bold mb-2" for="username">
+          Prix <span class="text-red-500">*</span>
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="price"
+          type="number"
+          required
+          formControlName="price"
+        />
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <button
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+        type="button"
+      >
+        Annuler
+      </button>
+      <button
+        class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-md"
+        type="button"
+      >
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</app-paper>
