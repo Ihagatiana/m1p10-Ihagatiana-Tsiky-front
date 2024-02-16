@@ -115,7 +115,14 @@ export class ServicesFormComponent implements OnInit {
         data = { ...data, description: this.form.get('description')?.value };
       }
       if (this.form.get('duration')?.dirty) {
-        data = { ...data, duration: this.form.get('duration')?.value };
+        const time = this.form.get('duration')?.value.split(':');
+        data = {
+          ...data,
+          duration: {
+            hours: time[0],
+            minutes: time[1],
+          },
+        };
       }
       if (this.form.get('price')?.dirty) {
         data = { ...data, price: this.form.get('price')?.value };
