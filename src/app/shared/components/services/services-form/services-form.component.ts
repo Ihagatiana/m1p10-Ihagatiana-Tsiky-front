@@ -1,8 +1,9 @@
-import { CreateServiceDto } from './../dto/service.dto';
+import { CreateServiceDto, UpdateServiceDto } from './../dto/service.dto';
 import { Service, ServicesService } from './../../services.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-services-form',
@@ -12,11 +13,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class ServicesFormComponent implements OnInit {
   form: FormGroup;
   loading = false;
-  @Input() id: Service['id'] | null = null;
+  @Input() id: BehaviorSubject<Service['_id'] | null> = new BehaviorSubject<
+    Service['_id'] | null
+  >(null);
   constructor(
     private readonly formbuilder: FormBuilder,
-    private domSanitizer: DomSanitizer,
-    private servicesService: ServicesService
+    private readonly domSanitizer: DomSanitizer,
+    private readonly servicesService: ServicesService
   ) {
     this.form = this.formbuilder.group({
       id: [null],
@@ -28,7 +31,26 @@ export class ServicesFormComponent implements OnInit {
     });
   }
   @Output() onCloseForm = new EventEmitter<boolean>();
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.id.subscribe((id) => {
+      if (id !== null) {
+        this.loading = true;
+        this.servicesService
+          .findOne(id)
+          .toPromise()
+          .then((data) => {
+            if (data) {
+              this.form.patchValue(data);
+              this.form.get('id')?.patchValue(data._id);
+            }
+          })
+          .finally(() => {
+            this.loading = false;
+            this.form.markAsPristine();
+          });
+      }
+    });
+  }
 
   get title() {
     return this.form?.get('name');
@@ -49,9 +71,9 @@ export class ServicesFormComponent implements OnInit {
   }
 
   submitForm() {
-    const data = this.form.value;
     this.loading = true;
-    if (this.id === null) {
+
+    if (this.id.value === null) {
       const time = this.form.value['duration'].split(':');
       const data: CreateServiceDto = {
         name: this.form.value['name'],
@@ -67,6 +89,31 @@ export class ServicesFormComponent implements OnInit {
         .create(data)
         .toPromise()
         .then(console.log)
+        .finally(() => {
+          this.loading = false;
+          this.onCloseForm.emit(false);
+        });
+    } else {
+      let data: UpdateServiceDto = {
+        _id: this.id.value !== null ? this.id.value : undefined,
+      };
+      if (this.form.get('name')?.dirty) {
+        data = { ...data, name: this.form.get('name')?.value };
+      }
+      if (this.form.get('description')?.dirty) {
+        data = { ...data, description: this.form.get('description')?.value };
+      }
+      if (this.form.get('duration')?.dirty) {
+        data = { ...data, duration: this.form.get('duration')?.value };
+      }
+      if (this.form.get('price')?.dirty) {
+        data = { ...data, price: this.form.get('price')?.value };
+      }
+      this.loading = true;
+      this.servicesService
+        .update(this.id.value, data)
+        .toPromise()
+        .then()
         .finally(() => {
           this.loading = false;
           this.onCloseForm.emit(false);

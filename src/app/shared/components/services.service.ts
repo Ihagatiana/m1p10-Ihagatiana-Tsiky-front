@@ -14,7 +14,7 @@ export class ServicesService {
     return this.httpService.get<Service[]>(`${this.base_url}/services`);
   }
 
-  findOne(id: Service['id']) {
+  findOne(id: Service['_id']) {
     return this.httpService.get<Service>(`${this.base_url}/services/${id}`);
   }
 
@@ -22,19 +22,19 @@ export class ServicesService {
     return this.httpService.post<Service>(`${this.base_url}/services`, service);
   }
 
-  update(id: Service['id'], service: UpdateServiceDto) {
+  update(id: Service['_id'], service: UpdateServiceDto) {
     return this.httpService.put<Service>(
       `${this.base_url}/services/${id}`,
       service
     );
   }
-  delete(id: Service['id']) {
+  delete(id: Service['_id']) {
     return this.httpService.delete<Service>(`${this.base_url}/services/${id}`);
   }
 }
 
 export type Service = {
-  id: number;
+  _id: string;
   name: string;
   price: number;
   // duration: Time;

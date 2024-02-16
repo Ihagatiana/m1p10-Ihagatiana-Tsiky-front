@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Service, ServicesService } from '../../services.service';
 
 @Component({
@@ -11,6 +12,9 @@ export class ServicesListComponent {
   @Input() canSwitchView = false;
   displayMode: 'list' | 'grid' = 'grid';
   services: Service[] = [];
+  id: BehaviorSubject<Service['_id'] | null> = new BehaviorSubject<
+    Service['_id'] | null
+  >(null);
   showForm: boolean = false;
   constructor(private readonly service: ServicesService) {}
   ngOnInit(): void {
@@ -28,7 +32,12 @@ export class ServicesListComponent {
     });
   }
 
-  onToogleForm(value: boolean) {
+  onToogleFormCreate(value: boolean) {
     this.showForm = value;
   }
+
+  onToogleFormUpdate = (id: string) => {
+    this.id.next(id);
+    this.showForm = true;
+  };
 }

@@ -16,4 +16,8 @@ export class CardComponent {
   @Input() alt = '';
 
   @Output() onClick = new EventEmitter<any>();
+
+  clicCard = () => {
+    this.onClick.emit();
+  };
 }
