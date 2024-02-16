@@ -48,22 +48,23 @@
           className="h-[500px] w-[395px] flex-col !text-start "
           *ngFor="let service of services"
           (onClick)="onToogleFormUpdate(service._id)"
-          imgUrl="https://source.unsplash.com/user/c_v_r/1900x800"
+          [imgUrl]="
+            service.images?.length > 0
+              ? base_url + '/' + service.images[0].url
+              : 'https://source.unsplash.com/user/c_v_r/1900x800'
+          "
         >
           <h1 class="text-lg italic px-6">{{ service.name }}</h1>
 
-          <!-- <span class="text-xs px-6"
+          <span class="text-xs px-6"
             >Durée :
             {{ service.duration.hours === 0 ? "00" : service.duration.hours }}
             :
             {{
               service.duration.minutes === 0 ? "00" : service.duration.minutes
             }}</span
-          > -->
-          <span class="text-xs px-6"
-            >Durée :
-            {{ service.duration }}
-          </span>
+          >
+
           <div class="flex text-sm !h-80 !overflow-y-hidden mx-6">
             {{ service.description }}
           </div>
@@ -74,7 +75,7 @@
   <app-modal
     class="w-[400px]"
     [showModal]="showForm"
-    title="Ajout d'un service"
+    [title]="title"
     (onClose)="onToogleFormCreate($event)"
   >
     <app-services-form (onCloseForm)="onToogleFormCreate($event)" [id]="id" />

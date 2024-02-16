@@ -8,7 +8,7 @@ import { CreateServiceDto, UpdateServiceDto } from './services/dto/service.dto';
   providedIn: 'root',
 })
 export class ServicesService {
-  private base_url = environment.baseUrl;
+  public base_url = environment.baseUrl;
   constructor(private readonly httpService: HttpClient) {}
   getAll() {
     return this.httpService.get<Service[]>(`${this.base_url}/services`);
@@ -37,7 +37,8 @@ export type Service = {
   _id: string;
   name: string;
   price: number;
-  // duration: Time;
-  duration: number;
+  duration: Time;
+  // duration: number;
   description: string;
+  images?: any;
 };

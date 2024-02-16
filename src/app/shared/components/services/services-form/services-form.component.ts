@@ -40,8 +40,18 @@ export class ServicesFormComponent implements OnInit {
           .toPromise()
           .then((data) => {
             if (data) {
+              const duration = `${
+                data.duration.hours.toString().length === 2
+                  ? data.duration.hours.toString()
+                  : '0' + data.duration.hours.toString()
+              }:${
+                data.duration.minutes.toString().length === 2
+                  ? data.duration.minutes
+                  : '0' + data.duration.minutes
+              }`;
               this.form.patchValue(data);
               this.form.get('id')?.patchValue(data._id);
+              this.form.get('duration')?.patchValue(duration);
             }
           })
           .finally(() => {
@@ -72,17 +82,15 @@ export class ServicesFormComponent implements OnInit {
 
   submitForm() {
     this.loading = true;
-
     if (this.id.value === null) {
       const time = this.form.value['duration'].split(':');
       const data: CreateServiceDto = {
         name: this.form.value['name'],
         description: this.form.value['description'],
-        // duration: {
-        //   hours: time[0],
-        //   minutes: time[1],
-        // },
-        duration: 0,
+        duration: {
+          hours: time[0],
+          minutes: time[1],
+        },
         price: this.form.value['price'],
       };
       this.servicesService
@@ -90,7 +98,10 @@ export class ServicesFormComponent implements OnInit {
         .toPromise()
         .then(console.log)
         .finally(() => {
+          this.id.next(null);
           this.loading = false;
+          this.form.reset();
+
           this.onCloseForm.emit(false);
         });
     } else {
@@ -115,6 +126,8 @@ export class ServicesFormComponent implements OnInit {
         .toPromise()
         .then()
         .finally(() => {
+          this.id.next(null);
+          this.form.reset();
           this.loading = false;
           this.onCloseForm.emit(false);
         });
