@@ -10,15 +10,15 @@ export class ServicesService {
   private base_url = environment.baseUrl;
   constructor(private readonly httpService: HttpClient) {}
   getAll() {
-    return this.httpService.get<Service[]>(`${this.base_url}/service/all`);
+    return this.httpService.get<Service[]>(`${this.base_url}/services`);
   }
 
   findOne(id: Service['id']) {
-    return this.httpService.get<Service>(`${this.base_url}/service/${id}`);
+    return this.httpService.get<Service>(`${this.base_url}/services/${id}`);
   }
 
   create(service: Service) {
-    return this.httpService.post<Service>(`${this.base_url}/service`, service);
+    return this.httpService.post<Service>(`${this.base_url}/services`, service);
   }
 
   update(id: Service['id'], service: UpdateServiceDto) {
@@ -28,7 +28,7 @@ export class ServicesService {
     );
   }
   delete(id: Service['id']) {
-    return this.httpService.delete<Service>(`${this.base_url}/${id}`);
+    return this.httpService.delete<Service>(`${this.base_url}/services/${id}`);
   }
 }
 
