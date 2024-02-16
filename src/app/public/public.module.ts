@@ -9,6 +9,7 @@ import { LoaderComponent } from '../components/loader/loader.component';
 import { PaperComponent } from '../components/paper/paper.component';
 import { SectionComponent } from '../components/section/section.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @NgModule({
   declarations: [ServicesComponent, PublicLayoutComponent, HomeComponent],
@@ -20,6 +21,7 @@ import { HomeComponent } from './pages/home/home.component';
     SectionComponent,
     CardComponent,
     LoaderComponent,
+    ModalComponent,
   ],
 })
 export class PublicModule {}

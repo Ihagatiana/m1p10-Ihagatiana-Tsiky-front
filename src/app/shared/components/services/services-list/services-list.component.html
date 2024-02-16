@@ -1,28 +1,39 @@
 <app-paper className="mx-10">
   <app-section title="Nos Services" className="bg-slate-200  ">
     <div class="hidden md:flex justify-end !mr-8 gap-4 mb-4">
-      <button
-        [class]="
-          displayMode === 'list'
-            ? 'bg-blue-500  text-white font-bold py-2 px-4 rounded'
-            : 'bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-blue-500 '
-        "
-        (click)="setMode('list')"
-        [disabled]="displayMode === 'list'"
-      >
-        List
-      </button>
-      <button
-        [class]="
-          displayMode === 'grid'
-            ? 'bg-blue-500  text-white font-bold py-2 px-4 rounded'
-            : 'bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-blue-500 '
-        "
-        (click)="setMode('grid')"
-        [disabled]="displayMode === 'grid'"
-      >
-        Grid
-      </button>
+      <div>
+        <button
+          class="bg-blue-500 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+          (click)="onToogleFormCreate(true)"
+        >
+          Ajouter un service
+        </button>
+      </div>
+      <div>
+        <button
+          [class]="
+            displayMode === 'list'
+              ? 'bg-blue-500  text-white font-bold py-2 px-4 rounded'
+              : 'bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-blue-500 '
+          "
+          (click)="setMode('list')"
+          [disabled]="displayMode === 'list'"
+        >
+          List
+        </button>
+        <button
+          [class]="
+            displayMode === 'grid'
+              ? 'bg-blue-500  text-white font-bold py-2 px-4 rounded'
+              : 'bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-blue-500 '
+          "
+          (click)="setMode('grid')"
+          [disabled]="displayMode === 'grid'"
+        >
+          Grid
+        </button>
+      </div>
     </div>
     <div class="relative">
       <app-loader
@@ -36,7 +47,12 @@
         <app-card
           className="h-[500px] w-[395px] flex-col !text-start "
           *ngFor="let service of services"
-          imgUrl="https://source.unsplash.com/user/c_v_r/1900x800"
+          (onClick)="onToogleFormUpdate(service._id)"
+          [imgUrl]="
+            service.images?.length > 0
+              ? base_url + '/' + service.images[0].url
+              : 'https://source.unsplash.com/user/c_v_r/1900x800'
+          "
         >
           <h1 class="text-lg italic px-6">{{ service.name }}</h1>
 
@@ -48,6 +64,7 @@
               service.duration.minutes === 0 ? "00" : service.duration.minutes
             }}</span
           >
+
           <div class="flex text-sm !h-80 !overflow-y-hidden mx-6">
             {{ service.description }}
           </div>
@@ -55,4 +72,12 @@
       </div>
     </div>
   </app-section>
+  <app-modal
+    class="w-[400px]"
+    [showModal]="showForm"
+    [title]="title"
+    (onClose)="onToogleFormCreate($event)"
+  >
+    <app-services-form (onCloseForm)="onToogleFormCreate($event)" [id]="id" />
+  </app-modal>
 </app-paper>
