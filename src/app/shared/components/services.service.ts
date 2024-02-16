@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
+import { CreateServiceDto, UpdateServiceDto } from './services/dto/service.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class ServicesService {
     return this.httpService.get<Service>(`${this.base_url}/services/${id}`);
   }
 
-  create(service: Service) {
+  create(service: CreateServiceDto) {
     return this.httpService.post<Service>(`${this.base_url}/services`, service);
   }
 
@@ -36,8 +37,7 @@ export type Service = {
   id: number;
   name: string;
   price: number;
-  duration: Time;
+  // duration: Time;
+  duration: number;
   description: string;
 };
-
-export type UpdateServiceDto = Partial<Service>;

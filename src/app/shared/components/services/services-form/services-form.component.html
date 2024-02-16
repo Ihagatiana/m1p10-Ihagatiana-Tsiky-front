@@ -3,7 +3,7 @@
   spinnerClassName="!border-blue-300"
 ></app-loader>
 <app-paper [padding]="true">
-  <form [formGroup]="form" class="!w-[400px]">
+  <form [formGroup]="form" class="!w-[400px]" (ngSubmit)="submitForm()">
     <div class="mb-4">
       <label class="flex text-gray-700 text-sm font-bold mb-2" for="username">
         Nom <span class="text-red-500">*</span>
@@ -23,6 +23,7 @@
       </label>
       <textarea
         name="description"
+        formControlName="description"
         id="description"
         required
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -51,6 +52,7 @@
           type="number"
           required
           formControlName="price"
+          name="price"
         />
       </div>
     </div>
@@ -63,7 +65,7 @@
       </button>
       <button
         class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-md"
-        type="button"
+        type="submit"
       >
         Enregistrer
       </button>

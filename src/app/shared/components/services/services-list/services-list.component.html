@@ -51,14 +51,18 @@
         >
           <h1 class="text-lg italic px-6">{{ service.name }}</h1>
 
-          <span class="text-xs px-6"
+          <!-- <span class="text-xs px-6"
             >Durée :
             {{ service.duration.hours === 0 ? "00" : service.duration.hours }}
             :
             {{
               service.duration.minutes === 0 ? "00" : service.duration.minutes
             }}</span
-          >
+          > -->
+          <span class="text-xs px-6"
+            >Durée :
+            {{ service.duration }}
+          </span>
           <div class="flex text-sm !h-80 !overflow-y-hidden mx-6">
             {{ service.description }}
           </div>
@@ -72,6 +76,6 @@
     title="Ajout d'un service"
     (onClose)="onToogleForm($event)"
   >
-    <app-services-form />
+    <app-services-form (onCloseForm)="onToogleForm($event)" />
   </app-modal>
 </app-paper>
