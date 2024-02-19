@@ -17,6 +17,7 @@ export class ServicesListComponent {
   elementPerPage = 4;
   services: Service[] = [];
   total = new BehaviorSubject<number>(0);
+
   id: BehaviorSubject<Service['_id'] | null> = new BehaviorSubject<
     Service['_id'] | null
   >(null);
@@ -70,5 +71,16 @@ export class ServicesListComponent {
   onPaginate(page: number) {
     this.page.next(page);
     this.fetchAll();
+  }
+
+  onDelete(id: string) {
+    this.service.delete(id).subscribe(
+      (data) => {
+        this.fetchAll();
+      },
+      (errr) => {
+        console.log(errr);
+      }
+    );
   }
 }

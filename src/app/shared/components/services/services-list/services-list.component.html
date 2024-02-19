@@ -47,14 +47,15 @@
         <app-card
           className="h-[500px] w-[395px] flex-col !text-start "
           *ngFor="let service of services"
-          (onClick)="onToogleFormUpdate(service._id)"
+
+          (onDeleteCard)="onDelete(service._id)"
           [imgUrl]="
             service.images?.length > 0
               ? base_url + '/' + service.images[0].url
               : 'https://source.unsplash.com/user/c_v_r/1900x800'
           "
         >
-          <h1 class="text-lg italic px-6">{{ service.name }}</h1>
+          <h1 class="text-lg italic px-6" (onClick)="onToogleFormUpdate(service._id)">{{ service.name }}</h1>
 
           <span class="text-xs px-6"
             >Durée :
