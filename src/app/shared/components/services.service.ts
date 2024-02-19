@@ -19,7 +19,17 @@ export class ServicesService {
   }
 
   create(service: CreateServiceDto) {
-    return this.httpService.post<Service>(`${this.base_url}/services`, service);
+    const formData = new FormData();
+
+    formData.append('name', service.name);
+    formData.append('description', service.description);
+    formData.append('duration', JSON.stringify(service.duration));
+    formData.append('photos', service.photos);
+    formData.append('price', service.price.toString());
+    return this.httpService.post<Service>(
+      `${this.base_url}/services`,
+      formData
+    );
   }
 
   update(id: Service['_id'], service: UpdateServiceDto) {

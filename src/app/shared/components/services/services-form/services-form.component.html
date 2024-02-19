@@ -56,6 +56,9 @@
         />
       </div>
     </div>
+    <div class="mb-4">
+      <app-drag-n-drop (onDropEmit)="onEndDrop($event)" />
+    </div>
     <div class="grid grid-cols-2 gap-4">
       <button
         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"

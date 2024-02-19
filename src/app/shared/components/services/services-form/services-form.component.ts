@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ServicesFormComponent implements OnInit {
   form: FormGroup;
   loading = false;
+  file: File | null = null;
   @Input() id: BehaviorSubject<Service['_id'] | null> = new BehaviorSubject<
     Service['_id'] | null
   >(null);
@@ -31,6 +32,11 @@ export class ServicesFormComponent implements OnInit {
     });
   }
   @Output() onCloseForm = new EventEmitter<boolean>();
+
+  onEndDrop(file: File | null) {
+    console.log(file);
+    this.file = file;
+  }
   ngOnInit(): void {
     this.id.subscribe((id) => {
       if (id !== null) {
@@ -82,6 +88,7 @@ export class ServicesFormComponent implements OnInit {
 
   submitForm() {
     this.loading = true;
+    console.log(this.file);
     if (this.id.value === null) {
       const time = this.form.value['duration'].split(':');
       const data: CreateServiceDto = {
@@ -92,7 +99,12 @@ export class ServicesFormComponent implements OnInit {
           minutes: time[1],
         },
         price: this.form.value['price'],
+        photos:
+          this.file === null
+            ? undefined
+            : new Blob([this.file], { type: this.file.type }),
       };
+
       this.servicesService
         .create(data)
         .toPromise()
