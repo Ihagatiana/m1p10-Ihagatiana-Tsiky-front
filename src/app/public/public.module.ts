@@ -1,3 +1,4 @@
+import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,6 +23,7 @@ import { ModalComponent } from '../components/modal/modal.component';
     CardComponent,
     LoaderComponent,
     ModalComponent,
+    DragNDropComponent,
   ],
 })
 export class PublicModule {}
