@@ -71,6 +71,12 @@
         </app-card>
       </div>
     </div>
+    <app-pagination
+      (onPaginate)="onPaginate($event)"
+      [totalElements]="total.value"
+      [elementPerPage]="elementPerPage"
+      [pageNumbers]="pageNumbers"
+    />
   </app-section>
   <app-modal
     class="w-[400px]"

@@ -30,17 +30,22 @@
           <p class="text-xl">{{ "<" }}</p>
         </button>
       </li>
-      <li *ngFor="let i of getArrayFromPageNumbers()">
-        <button
-          (click)="onPaginateLocaly(i)"
-          type="button"
-          [class]="
-            'border-none p-1 w-7 h-7 flex justify-center items-center hover:opacity-75 cursor-pointer bg-blue-500 text-white rounded-md'
-          "
-        >
-          <p class="text-xl">{{ i }}</p>
-        </button>
-      </li>
+
+      <div class="flex rounded list-none flex-wrap justify-center gap-3">
+        <li *ngFor="let i of getArrayFromPageNumbers()">
+          <button
+            [disabled]="currentPage === i"
+            (click)="onPaginateLocaly(i)"
+            type="button"
+            [class]="
+              'border-none p-1 w-7 h-7 flex justify-center items-center hover:opacity-75 cursor-pointer bg-blue-500 text-white rounded-md'
+            "
+          >
+            <p class="text-xl">{{ i }}</p>
+          </button>
+        </li>
+      </div>
+
       <li>
         <button
           (click)="onNext()"

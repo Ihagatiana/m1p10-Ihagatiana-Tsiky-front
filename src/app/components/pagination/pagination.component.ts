@@ -13,8 +13,7 @@ export class PaginationComponent implements OnInit {
   @Input() elementPerPage = 1;
   @Input() inlineflex = '';
   @Input() currentPage = 1;
-  pageNumbers = this.totalElements / this.elementPerPage;
-  tooManyPages = this.pageNumbers > 5;
+  @Input() pageNumbers = 0;
 
   @Output() onPaginate: EventEmitter<number> = new EventEmitter<number>();
   ngOnInit(): void {
@@ -22,12 +21,14 @@ export class PaginationComponent implements OnInit {
   }
   onPrev() {
     if (this.currentPage > 1) {
-      this.onPaginate.emit(this.currentPage - 1);
+      this.currentPage--;
+      this.onPaginate.emit(this.currentPage);
     }
   }
   onNext() {
     if (this.currentPage < this.pageNumbers) {
-      this.onPaginate.emit(this.currentPage + 1);
+      this.currentPage++;
+      this.onPaginate.emit(this.currentPage);
     }
   }
 
