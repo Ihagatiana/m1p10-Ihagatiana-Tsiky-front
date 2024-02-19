@@ -1,3 +1,4 @@
+import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalComponent,
     ReactiveFormsModule,
     FormsModule,
+    DragNDropComponent,
   ],
   declarations: [
     NavBarComponent,
