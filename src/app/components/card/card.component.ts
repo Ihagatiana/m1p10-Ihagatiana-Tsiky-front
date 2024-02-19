@@ -15,9 +15,17 @@ export class CardComponent {
   @Input() className = '';
   @Input() alt = '';
 
+  @Input() allowRemove = false;
+
+  @Output() onDeleteCard: EventEmitter<void> = new EventEmitter();
+
   @Output() onClick = new EventEmitter<any>();
 
   clicCard = () => {
     this.onClick.emit();
   };
+
+  deleteCard() {
+    this.onDeleteCard.emit();
+  }
 }
