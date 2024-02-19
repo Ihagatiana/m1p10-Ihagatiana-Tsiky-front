@@ -1,3 +1,4 @@
+import { PaginationComponent } from './../components/pagination/pagination.component';
 import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { NgModule } from '@angular/core';
@@ -24,6 +25,7 @@ import { ModalComponent } from '../components/modal/modal.component';
     LoaderComponent,
     ModalComponent,
     DragNDropComponent,
+    PaginationComponent,
   ],
 })
 export class PublicModule {}

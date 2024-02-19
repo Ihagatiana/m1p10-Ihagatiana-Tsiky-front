@@ -1,0 +1,57 @@
+<div [class]="inlineflex + ' py-2'">
+  <div class="mb-2">
+    <p class="text-sm text-slate-700 text-center">
+      Affichage de l'élément
+      <span class="font-medium">
+        {{ (currentPage - 1) * elementPerPage + 1 }} </span
+      >à
+      <span class="font-medium">
+        {{
+          currentPage * elementPerPage > totalElements
+            ? totalElements
+            : currentPage * elementPerPage
+        }}
+      </span>
+      sur
+      <span class="font-medium"> {{ totalElements }} </span>
+      élément{{ totalElements > 1 ? "s" : "" }}
+    </p>
+  </div>
+  <nav class="block">
+    <ul class="flex pl-0 rounded list-none flex-wrap justify-center gap-3">
+      <li>
+        <button
+          (click)="onPrev()"
+          type="button"
+          [class]="
+            'border-none p-1 w-7 h-7 flex justify-center items-center hover:opacity-75 cursor-pointer bg-blue-500 text-white rounded-md'
+          "
+        >
+          <p class="text-xl">{{ "<" }}</p>
+        </button>
+      </li>
+      <li *ngFor="let i of getArrayFromPageNumbers()">
+        <button
+          (click)="onPaginateLocaly(i)"
+          type="button"
+          [class]="
+            'border-none p-1 w-7 h-7 flex justify-center items-center hover:opacity-75 cursor-pointer bg-blue-500 text-white rounded-md'
+          "
+        >
+          <p class="text-xl">{{ i }}</p>
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="onNext()"
+          type="button"
+          [class]="
+            'border-none p-1 w-7 h-7 flex justify-center items-center hover:opacity-75 cursor-pointer bg-blue-500 text-white rounded-md'
+          "
+        >
+          <p class="text-xl">{{ ">" }}</p>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
