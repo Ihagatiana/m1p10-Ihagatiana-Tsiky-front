@@ -1,3 +1,4 @@
+import { PaginationComponent } from './../components/pagination/pagination.component';
 import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     DragNDropComponent,
+    PaginationComponent,
   ],
   declarations: [
     NavBarComponent,

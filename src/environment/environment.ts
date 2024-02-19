@@ -4,5 +4,6 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://beautysalon-belh.onrender.com',
+  baseUrl: 'http://localhost:3000',
+  // baseUrl: 'https://beautysalon-belh.onrender.com',
 };

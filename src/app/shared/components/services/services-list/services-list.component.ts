@@ -12,7 +12,11 @@ export class ServicesListComponent {
   loading = false;
   @Input() canSwitchView = false;
   displayMode: 'list' | 'grid' = 'grid';
+  page = new BehaviorSubject<number>(1);
+  pageNumbers = 0;
+  elementPerPage = 4;
   services: Service[] = [];
+  total = new BehaviorSubject<number>(0);
   id: BehaviorSubject<Service['_id'] | null> = new BehaviorSubject<
     Service['_id'] | null
   >(null);
@@ -29,6 +33,9 @@ export class ServicesListComponent {
       }
     });
     this.fetchAll();
+    this.total.subscribe((elt) => {
+      this.pageNumbers = Math.ceil(elt / this.elementPerPage);
+    });
   }
   setMode(value: 'list' | 'grid') {
     this.displayMode = value;
@@ -36,10 +43,16 @@ export class ServicesListComponent {
 
   fetchAll() {
     this.loading = true;
-    this.service.getAll().subscribe((data) => {
-      this.services = data;
-      this.loading = false;
-    });
+    this.service
+      .getAll({
+        limit: this.elementPerPage,
+        offset: (this.page.value - 1) * this.elementPerPage,
+      })
+      .subscribe((response) => {
+        this.services = response.data;
+        this.total.next(response.total);
+        this.loading = false;
+      });
   }
 
   onToogleFormCreate(value: boolean) {
@@ -53,4 +66,9 @@ export class ServicesListComponent {
     this.id.next(id);
     this.showForm = true;
   };
+
+  onPaginate(page: number) {
+    this.page.next(page);
+    this.fetchAll();
+  }
 }

@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
+import { PaginatedResponse, PaginationQuery } from '../dtos/pagination.dto';
 import { CreateServiceDto, UpdateServiceDto } from './services/dto/service.dto';
 
 @Injectable({
@@ -10,8 +11,13 @@ import { CreateServiceDto, UpdateServiceDto } from './services/dto/service.dto';
 export class ServicesService {
   public base_url = environment.baseUrl;
   constructor(private readonly httpService: HttpClient) {}
-  getAll() {
-    return this.httpService.get<Service[]>(`${this.base_url}/services`);
+  getAll(params?: PaginationQuery) {
+    return this.httpService.get<PaginatedResponse<Service>>(
+      `${this.base_url}/services`,
+      {
+        params,
+      }
+    );
   }
 
   findOne(id: Service['_id']) {
