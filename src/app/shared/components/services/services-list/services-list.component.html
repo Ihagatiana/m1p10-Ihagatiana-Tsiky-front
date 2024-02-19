@@ -38,7 +38,7 @@
     <div class="relative">
       <app-loader
         [loading]="loading"
-        spinnerClassName="border-white"
+        spinnerClassName="border-blue-400"
       ></app-loader>
       <ul *ngIf="displayMode === 'list'" class="flex justify-evenly">
         <li *ngFor="let service of services">{{ service.name }}</li>
