@@ -1,9 +1,15 @@
 <nav class="flex justify-evenly px-2 py-3 bg-white shadow-md mb-3 h-28">
   <div class="px-4 flex items-center">
-    <div class="lg:w-[700px] mx-auto items-center">
-      <a class="text-sm italic inline-block mr-4 py-2 uppercase" routerLink="/">
+    <div class="lg:w-[700px] mx-auto items-center flex">
+      <!-- <a class="text-sm italic inline-block mr-4 py-2 uppercase" routerLink="/">
         Salon de beauté (LOGO)
-      </a>
+      </a> -->
+      <img
+        class="inline-block mr-4 py-2 w-24 mt-4"
+        src="../../../../assets/static/img/logo.png"
+        alt="logo"
+      />
+      <p class="text-lg italic">Oasis beauté</p>
     </div>
     <div class="hidden md:flex lg:flex items-center">
       <ul class="md:flex md:flex-row lg:flex lg:flex-row list-none ml-auto">
@@ -41,6 +47,15 @@
             routerLinkActive="active-link"
           >
             À propos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 flex items-center uppercase italic hover:opacity-75 hover:underline hover:text-red-300"
+            routerLink="/login"
+            routerLinkActive="active-link"
+          >
+            Se connecter
           </a>
         </li>
       </ul>

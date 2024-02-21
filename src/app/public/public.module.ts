@@ -12,9 +12,11 @@ import { PaperComponent } from '../components/paper/paper.component';
 import { SectionComponent } from '../components/section/section.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ModalComponent } from '../components/modal/modal.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [ServicesComponent, PublicLayoutComponent, HomeComponent],
+  declarations: [ServicesComponent, PublicLayoutComponent, HomeComponent, LoginComponent, SignUpComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,
