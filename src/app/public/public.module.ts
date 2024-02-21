@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from './../components/pagination/pagination.component';
 import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
@@ -16,7 +17,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [ServicesComponent, PublicLayoutComponent, HomeComponent, LoginComponent, SignUpComponent],
+  declarations: [
+    ServicesComponent,
+    PublicLayoutComponent,
+    HomeComponent,
+    LoginComponent,
+    SignUpComponent,
+  ],
   imports: [
     CommonModule,
     PublicRoutingModule,
@@ -28,6 +35,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     ModalComponent,
     DragNDropComponent,
     PaginationComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class PublicModule {}
