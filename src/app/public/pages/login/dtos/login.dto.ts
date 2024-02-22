@@ -9,5 +9,5 @@ export type AuthData = {
   name: string;
   roles: string;
   token: string;
-  photos: any[];
+  photo: any[];
 };
