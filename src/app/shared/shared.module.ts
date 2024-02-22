@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServicesService } from './components/services.service';
 import { ModalComponent } from '../components/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppointmentService } from './components/appointment/appointment.service';
+import { AppointmentListComponent } from './components/appointment/appointment-list/appointment-list.component';
+import { AppointmentFormComponent } from './components/appointment/appointment-form/appointment-form.component';
 
 @NgModule({
   imports: [
@@ -37,13 +40,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownComponent,
     ServicesListComponent,
     ServicesFormComponent,
+    AppointmentListComponent,
+    AppointmentFormComponent,
   ],
   exports: [
     NavBarComponent,
     DropdownComponent,
     ServicesListComponent,
     ServicesFormComponent,
+    AppointmentListComponent,
   ],
-  providers: [ServicesService, AuthServiceService],
+  providers: [ServicesService, AuthServiceService, AppointmentService],
 })
 export class SharedModule {}
