@@ -9,8 +9,9 @@ const routes: Routes = [
     path: '',
     component: EmployeeLayoutComponent,
     children: [
-      { path: '', component: ProfileComponent },
+      { path: '', component: EmployeeAppointmentComponent },
       { path: 'appointments', component: EmployeeAppointmentComponent },
+      { path: 'profil', component: ProfileComponent },
     ],
   },
 ];
