@@ -1,5 +1,8 @@
 <div class="sm:px-6 w-[1500px]">
-  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+  <app-loader
+    [loading]="loading"
+    spinnerClassName="border-blue-400"
+  ></app-loader>
   <div class="px-4 md:px-10 py-4 md:py-7">
     <div class="flex items-center justify-between">
       <p
@@ -23,38 +26,99 @@
   <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
     <div class="overflow-x-auto">
       <table class="w-full whitespace-nowrap">
+        <thead>
+          <tr class="focus:outline-none h-16 rounded">
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Service</p>
+              </div>
+            </th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Employé</p>
+              </div>
+            </th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Date</p>
+              </div>
+            </th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Heure de début</p>
+              </div>
+            </th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Heure de fin</p>
+              </div>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           <tr
+            *ngFor="let appointment of appointments"
             tabindex="0"
             class="focus:outline-none h-16 border border-gray-100 rounded"
           >
-            <td class="">
+            <td class="px-6">
               <div class="flex items-center pl-5">
                 <p
                   class="text-base font-medium leading-none text-gray-700 mr-2"
                 >
-                  Nom service
+                  {{ appointment.services?.name ?? "N/A" }}
                 </p>
               </div>
             </td>
-            <td class="pl-24">
-              <div class="flex items-center">
+            <td class="px-6">
+              <div class="flex items-center pl-5">
                 <p class="text-sm leading-none text-gray-600 ml-2">
-                  Employé Name
+                  {{ appointment.employes?.name ?? "N/A" }}
                 </p>
               </div>
             </td>
-            <td class="pl-5">
-              <div class="flex items-center">
+            <td class="px-6">
+              <div class="flex items-center pl-5">
                 <p class="text-sm leading-none text-gray-600 ml-2">
-                  Heure de début
+                  {{ appointment.appointments?.date ?? 'N/A' }}
                 </p>
               </div>
             </td>
-            <td class="pl-5">
+            <td class="px-6">
               <div class="flex items-center">
                 <p class="text-sm leading-none text-gray-600 ml-2">
-                  Heure de fin
+                  {{
+                    appointment.starttime
+                      ? appointment.starttime.hours +
+                        ":" +
+                        appointment.starttime.minutes
+                      : "N/A"
+                  }}
+                </p>
+              </div>
+            </td>
+            <td class="px-6">
+              <div class="flex items-center">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{
+                    appointment.endtime
+                      ? appointment.endtime.hours +
+                        ":" +
+                        appointment.endtime.minutes
+                      : "N/A"
+                  }}
                 </p>
               </div>
             </td>
@@ -62,7 +126,7 @@
               <button
                 class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded"
               >
-                État
+                État (à voir avec le dev back)
               </button>
             </td>
             <td class="pl-4">
@@ -75,6 +139,12 @@
           </tr>
         </tbody>
       </table>
+      <app-pagination
+        (onPaginate)="onPaginate($event)"
+        [totalElements]="total.value"
+        [elementPerPage]="elementPerPage"
+        [pageNumbers]="pageNumbers"
+      />
     </div>
   </div>
   <app-modal class="w-[400px]" [showModal]="showForm">
