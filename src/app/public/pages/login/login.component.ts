@@ -1,3 +1,4 @@
+import { AuthServiceService } from './../../../shared/services/auth-service.service';
 import { LoginService } from './service/login.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,7 +14,8 @@ export class LoginComponent {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly loginService: LoginService
+    private readonly loginService: LoginService,
+    private readonly authService: AuthServiceService
   ) {
     this.form = this.formBuilder.group({
       email: [
@@ -31,11 +33,12 @@ export class LoginComponent {
     this.loading = true;
     this.loginService.onLogIn(this.form.value).subscribe(
       (data) => {
-        console.log(data);
-
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('name', data.name);
-        localStorage.setItem('role', data.roles);
+        this.authService.updateLoggedInRole(data.roles);
+        this.authService.updateLoggedInState(true);
+        this.authService.updateLoggedInName(data.name);
+        this.authService.updateLoggedprofilePic(
+          data.photos.length > 0 ? data.photos[0] : null
+        );
       },
       (err) => {
         console.log(err);
