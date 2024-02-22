@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { LoginService } from './service/login.service';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -10,7 +11,10 @@ export class LoginComponent {
   form: FormGroup;
   loading = false;
 
-  constructor(private readonly formBuilder: FormBuilder) {
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly loginService: LoginService
+  ) {
     this.form = this.formBuilder.group({
       email: [
         '',
@@ -21,18 +25,25 @@ export class LoginComponent {
       ],
       password: ['', Validators.required],
     });
-
-    console.log(this.form.dirty);
   }
 
   onLogin() {
     this.loading = true;
-    // console.log(this.form.value);
+    this.loginService.onLogIn(this.form.value).subscribe(
+      (data) => {
+        console.log(data);
 
-    setTimeout(() => {
-      console.log(this.form.value);
-      this.loading = false;
-    }, 15000);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('role', data.roles);
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.loading = false;
+      }
+    );
   }
 
   get email() {

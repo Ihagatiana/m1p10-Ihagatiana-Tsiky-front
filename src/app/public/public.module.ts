@@ -1,3 +1,4 @@
+import { LoginService } from './pages/login/service/login.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from './../components/pagination/pagination.component';
 import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
@@ -15,6 +16,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ModalComponent } from '../components/modal/modal.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
   imports: [
     CommonModule,
     PublicRoutingModule,
+
+    HttpClientModule,
     SharedModule,
     PaperComponent,
     SectionComponent,
@@ -38,5 +42,6 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [LoginService],
 })
 export class PublicModule {}
