@@ -37,7 +37,7 @@ export class LoginComponent {
         this.authService.updateLoggedInState(true);
         this.authService.updateLoggedInName(data.name);
         this.authService.updateLoggedprofilePic(
-          data.photos.length > 0 ? data.photos[0] : null
+          data.photo.length > 0 ? data.photo[0] : null
         );
       },
       (err) => {
