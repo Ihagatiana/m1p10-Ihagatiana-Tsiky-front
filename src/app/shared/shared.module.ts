@@ -1,3 +1,4 @@
+import { AuthServiceService } from './services/auth-service.service';
 import { PaginationComponent } from './../components/pagination/pagination.component';
 import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
 import { RouterModule } from '@angular/router';
@@ -43,6 +44,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ServicesListComponent,
     ServicesFormComponent,
   ],
-  providers: [ServicesService],
+  providers: [ServicesService, AuthServiceService],
 })
 export class SharedModule {}
