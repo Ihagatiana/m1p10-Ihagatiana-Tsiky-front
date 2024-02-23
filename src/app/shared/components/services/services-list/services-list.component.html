@@ -40,36 +40,123 @@
         [loading]="loading"
         spinnerClassName="border-blue-400"
       ></app-loader>
-      <ul *ngIf="displayMode === 'list'" class="flex justify-evenly">
-        <li *ngFor="let service of services">{{ service.name }}</li>
-      </ul>
+      <div
+        *ngIf="displayMode === 'list'"
+        class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10"
+      >
+        <div class="overflow-x-auto">
+          <table class="w-full whitespace-nowrap">
+            <thead>
+              <tr class="focus:outline-none h-16 rounded">
+                <th
+                  class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+                >
+                  <div class="flex items-center pl-5">
+                    <p class="leading-none text-gray-700 mr-2">Nom</p>
+                  </div>
+                </th>
+                <th
+                  class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+                >
+                  <div class="flex items-center pl-5">
+                    <p class="leading-none text-gray-700 mr-2">Description</p>
+                  </div>
+                </th>
+                <th
+                  class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+                >
+                  <div class="flex items-center pl-5">
+                    <p class="leading-none text-gray-700 mr-2">Prix</p>
+                  </div>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let service of services"
+                tabindex="0"
+                class="focus:outline-none h-16 border border-gray-100 rounded"
+              >
+                <td class="px-6">
+                  <div class="flex items-center pl-5">
+                    <p
+                      class="text-base font-medium leading-none text-gray-700 mr-2"
+                    >
+                      {{ service.name }}
+                    </p>
+                  </div>
+                </td>
+                <td class="px-6">
+                  <div class="flex items-center pl-5">
+                    <p class="text-sm leading-none text-gray-600 ml-2">
+                      {{ service.description }}
+                    </p>
+                  </div>
+                </td>
+                <td class="px-6">
+                  <div class="flex items-center pl-5">
+                    <p class="text-sm leading-none text-gray-600 ml-2">
+                      {{ getFormatedPrice(service.price) }} Ar
+                    </p>
+                  </div>
+                </td>
+                <td class="pl-4">
+                  <button
+                    class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
+                  >
+                    Action
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div *ngIf="displayMode === 'grid'" class="grid grid-cols-4 gap-4 px-8">
-        <app-card
-          className="h-[500px] w-[395px] flex-col !text-start "
-          *ngFor="let service of services"
-
-          (onDeleteCard)="onDelete(service._id)"
-          [imgUrl]="
-            service.images?.length > 0
-              ? base_url + '/' + service.images[0].url
-              : 'https://source.unsplash.com/user/c_v_r/1900x800'
-          "
+        <div
+          *ngFor="let service of services; let i = index"
+          class="flex-shrink-0 m-6 overflow-hidden rounded-lg max-w-xs shadow-lg"
+          [class.bg-pink-200]="i % 2 == 0"
         >
-          <h1 class="text-lg italic px-6" (onClick)="onToogleFormUpdate(service._id)">{{ service.name }}</h1>
-
-          <span class="text-xs px-6"
-            >Durée :
-            {{ service.duration.hours === 0 ? "00" : service.duration.hours }}
-            :
-            {{
-              service.duration.minutes === 0 ? "00" : service.duration.minutes
-            }}</span
-          >
-
-          <div class="flex text-sm !h-80 !overflow-y-hidden mx-6">
-            {{ service.description }}
+          <div class="h-56">
+            <img
+              class="w-[100%] h-[100%]"
+              [src]="
+                service.images?.length > 0
+                  ? base_url + '/' + service.images[0].url
+                  : 'https://source.unsplash.com/user/c_v_r/1900x800'
+              "
+              alt=""
+            />
           </div>
-        </app-card>
+          <div class="relative text-white px-6 pb-6 mt-6">
+            <!-- <span class="block opacity-75 -mb-1">Outdoor</span> -->
+            <div class="flex justify-between">
+              <span class="block font-semibold text-xl">{{
+                service.name
+              }}</span>
+              <span
+                class="block bg-white rounded-full text-purple-500 text-xs font-bold px-3 py-2 leading-none flex items-center"
+                >{{ getFormatedPrice(service.price) }} Ar</span
+              >
+            </div>
+
+            <span class="block font-semibold text-xl">{{
+              service.description
+            }}</span
+            >*
+            <div class="flex justify-end">
+              <button
+                class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-slate-400 hover:bg-indigo-600 focus:outline-none rounded"
+              >
+                <p class="text-sm font-medium leading-none text-white">
+                  Prendre rendez-vous
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <app-pagination
