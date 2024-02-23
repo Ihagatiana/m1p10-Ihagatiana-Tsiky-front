@@ -57,4 +57,5 @@ export type Service = {
   // duration: number;
   description: string;
   images?: any;
+  displayedPrice: string;
 };

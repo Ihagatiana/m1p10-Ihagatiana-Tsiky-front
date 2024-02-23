@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { formatNumberForDisplay } from 'src/app/libs/functions/formatter';
 import { environment } from 'src/environment/environment';
 import { Service, ServicesService } from '../../services.service';
 
@@ -82,5 +83,9 @@ export class ServicesListComponent {
         console.log(errr);
       }
     );
+  }
+
+  getFormatedPrice(price: number) {
+    return formatNumberForDisplay(price);
   }
 }

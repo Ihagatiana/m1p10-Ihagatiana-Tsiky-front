@@ -1,6 +1,9 @@
 import { Service } from '../../services.service';
 
-export type CreateServiceDto = Omit<Service, '_id' | 'images'> & {
+export type CreateServiceDto = Omit<
+  Service,
+  '_id' | 'images' | 'displayedPrice'
+> & {
   photos: any;
 };
 
