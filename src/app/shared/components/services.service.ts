@@ -32,6 +32,7 @@ export class ServicesService {
     formData.append('duration', JSON.stringify(service.duration));
     formData.append('photos', service.photos);
     formData.append('price', service.price.toString());
+    formData.append('comission', service.comission.toString());
     return this.httpService.post<Service>(
       `${this.base_url}/services`,
       formData
@@ -58,4 +59,5 @@ export type Service = {
   description: string;
   images?: any;
   displayedPrice: string;
+  comission: number;
 };
