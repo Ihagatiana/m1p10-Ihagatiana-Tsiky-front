@@ -126,8 +126,9 @@
       </div>
       <div *ngIf="displayMode === 'grid'" class="grid grid-cols-4 gap-4 px-8">
         <div
+          (click)="onToogleDetailsService(service._id)"
           *ngFor="let service of services; let i = index"
-          class="flex-shrink-0 m-6 overflow-hidden rounded-lg max-w-xs shadow-lg"
+          class="flex-shrink-0 m-6 overflow-hidden rounded-lg max-w-xs shadow-lg hover:shadow-2xl hover:cursor-pointer ease-in-out transition-all"
           [class.bg-pink-200]="i % 2 == 0"
         >
           <div class="h-56">
