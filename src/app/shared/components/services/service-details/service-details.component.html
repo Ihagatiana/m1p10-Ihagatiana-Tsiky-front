@@ -1,0 +1,64 @@
+<app-loader
+  [loading]="loading"
+  spinnerClassName="!border-blue-300"
+></app-loader>
+<div
+  class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4 h-[650] w-[800px]"
+>
+  <div class="object-cover">
+    <img
+      class="w-full"
+      alt="images"
+      [src]="
+        (service | async)?.images.length > 0
+          ? base_url + '/' + (service | async)?.images[0].url
+          : ''
+      "
+    />
+  </div>
+
+  <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+    <div
+      class="py-4 border-b border-gray-200 flex items-center justify-between"
+    >
+      <div class="flex items-center justify-center">
+        <h1 class="text-base font-semibold italic leading-none text-black">
+          {{ (service | async)?.name }}
+        </h1>
+      </div>
+    </div>
+    <div
+      class="py-4 border-b border-gray-200 flex items-center justify-between"
+    >
+      <p class="text-base leading-4 text-gray-800">Prix</p>
+      <div class="flex items-center justify-center">
+        <p class="text-sm leading-none text-black mr-3">
+          {{ (service | async)?.displayedPrice ?? "N/A" }} Ar
+        </p>
+        <svg
+          class="text-gray-300 dark:text-white cursor-pointer"
+          width="6"
+          height="10"
+          viewBox="0 0 6 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1 1L5 5L1 9"
+            stroke="currentColor"
+            stroke-width="1.25"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
+    <div>
+      <p
+        class="xl:pr-48 text-base lg:leading-tight leading-normal text-black mt-7"
+      >
+        {{ (service | async)?.description }}
+      </p>
+    </div>
+  </div>
+</div>
