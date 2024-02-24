@@ -19,13 +19,20 @@ export class ServicesListComponent {
   services: Service[] = [];
   total = new BehaviorSubject<number>(0);
 
+  seriveDetailsId = new BehaviorSubject<Service['_id'] | null>('');
+
+  showDetail = false;
+
   id: BehaviorSubject<Service['_id'] | null> = new BehaviorSubject<
     Service['_id'] | null
   >(null);
 
   title = "Ajout d'un service";
   showForm: boolean = false;
-
+  onToogleDetailsService(serviceId: Service['_id']) {
+    this.seriveDetailsId.next(serviceId);
+    this.showDetail = true;
+  }
   base_url = environment.baseUrl;
   constructor(public service: ServicesService) {}
   ngOnInit(): void {
@@ -72,6 +79,11 @@ export class ServicesListComponent {
   onPaginate(page: number) {
     this.page.next(page);
     this.fetchAll();
+  }
+
+  onCloseDetails() {
+    this.seriveDetailsId.next(null);
+    this.showDetail = false;
   }
 
   onDelete(id: string) {

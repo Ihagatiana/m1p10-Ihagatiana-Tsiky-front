@@ -102,11 +102,22 @@
                   </div>
                 </td>
                 <td class="pl-4">
-                  <button
-                    class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
-                  >
-                    Action
-                  </button>
+                  <app-dropdown label="Actions">
+                    <ul class="flex flex-col p-4 gap-3">
+                      <li
+                        (click)="onToogleDetailsService(service._id)"
+                        class="hover:cursor-pointer hover:underline"
+                      >
+                        Voir détails
+                      </li>
+                      <li
+                        class="hover:cursor-pointer hover:underline"
+                        (click)="onToogleFormUpdate(service._id)"
+                      >
+                        Modifier
+                      </li>
+                    </ul>
+                  </app-dropdown>
                 </td>
               </tr>
             </tbody>
@@ -173,5 +184,13 @@
     (onClose)="onToogleFormCreate($event)"
   >
     <app-services-form (onCloseForm)="onToogleFormCreate($event)" [id]="id" />
+  </app-modal>
+  <app-modal
+    class="w-[400px]"
+    [showModal]="showDetail"
+    title="Détails d'un service"
+    (onClose)="onCloseDetails()"
+  >
+    <app-service-details [id]="seriveDetailsId" />
   </app-modal>
 </app-paper>

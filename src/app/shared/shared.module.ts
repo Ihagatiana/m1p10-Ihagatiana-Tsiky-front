@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentService } from './components/appointment/appointment.service';
 import { AppointmentListComponent } from './components/appointment/appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './components/appointment/appointment-form/appointment-form.component';
+import { ServiceDetailsComponent } from './components/services/service-details/service-details.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { AppointmentFormComponent } from './components/appointment/appointment-f
     ServicesFormComponent,
     AppointmentListComponent,
     AppointmentFormComponent,
+    ServiceDetailsComponent,
   ],
   exports: [
     NavBarComponent,

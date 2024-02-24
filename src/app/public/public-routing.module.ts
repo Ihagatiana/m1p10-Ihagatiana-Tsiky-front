@@ -14,6 +14,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'accueil', component: HomeComponent },
       { path: 'services', component: ServicesComponent },
+      { path: 'services/:id', component: ServicesComponent },
       { path: 'login', component: LoginComponent },
       { path: 'sign-up', component: SignUpComponent },
     ],
