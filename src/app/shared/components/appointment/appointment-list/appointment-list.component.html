@@ -1,8 +1,8 @@
 <div class="sm:px-6 w-[1500px]">
-  <app-loader
+  <!-- <app-loader
     [loading]="loading"
     spinnerClassName="border-blue-400"
-  ></app-loader>
+  ></app-loader> -->
   <div class="px-4 md:px-10 py-4 md:py-7">
     <div class="flex items-center justify-between">
       <p
@@ -92,7 +92,7 @@
             <td class="px-6">
               <div class="flex items-center pl-5">
                 <p class="text-sm leading-none text-gray-600 ml-2">
-                  {{ appointment.appointments?.date ?? 'N/A' }}
+                  {{ appointment.appointments?.date ?? "N/A" }}
                 </p>
               </div>
             </td>
@@ -147,7 +147,11 @@
       />
     </div>
   </div>
-  <app-modal class="w-[400px]" [showModal]="showForm">
+  <app-modal
+    class="w-[400px]"
+    [showModal]="showForm"
+    title="Prendre rendez-vous"
+  >
     <app-appointment-form />
   </app-modal>
 </div>
