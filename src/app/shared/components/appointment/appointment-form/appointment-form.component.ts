@@ -1,3 +1,5 @@
+import { EmployeService } from './../../employe/employe.service';
+import { Service, ServicesService } from './../../services.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,11 +15,14 @@ export class AppointmentFormComponent {
   form: FormGroup;
 
   loading = false;
-
+  employes: any[] = [];
+  services: Service[] = [];
   @Output() onCloseForm = new EventEmitter<boolean>();
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly appointmentService: AppointmentService
+    private readonly appointmentService: AppointmentService,
+    private readonly serviceService: ServicesService,
+    private readonly employesService: EmployeService
   ) {
     this.form = this.formBuilder.group({
       id: [null],
@@ -27,6 +32,19 @@ export class AppointmentFormComponent {
       starttime: [null],
       appservices: this.formBuilder.array([]),
     });
+  }
+
+  ngOnInit() {
+    this.loading = true;
+    Promise.all([
+      this.serviceService.getAll().toPromise(),
+      this.employesService.getAll().toPromise(),
+    ])
+      .then(([serviceResponse, employeResponse]) => {
+        this.services = serviceResponse?.data ?? [];
+        this.employes = employeResponse?.data ?? [];
+      })
+      .finally(() => (this.loading = false));
   }
 
   get clients() {
@@ -73,13 +91,9 @@ export class AppointmentFormComponent {
     };
     this.appointmentService
       .create(data)
-      .toPromise()
-      .catch(console.log)
-      .then(console.log)
-      .finally(() => {
+      .subscribe(() => {
         this.loading = false;
         this.form.reset();
-
         this.onCloseForm.emit(false);
       });
   }
