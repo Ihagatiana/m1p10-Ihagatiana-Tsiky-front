@@ -153,6 +153,6 @@
     (onClose)="onToogleForm($event)"
     title="Prendre rendez-vous"
   >
-    <app-appointment-form />
+    <app-appointment-form (onCloseForm)="onToogleForm($event)" />
   </app-modal>
 </div>

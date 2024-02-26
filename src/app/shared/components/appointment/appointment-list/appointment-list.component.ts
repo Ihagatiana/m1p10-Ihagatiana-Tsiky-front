@@ -23,6 +23,9 @@ export class AppointmentListComponent {
   constructor(public readonly service: AppointmentService) {}
   onToogleForm(value: boolean) {
     this.showForm = value;
+    if (value === false) {
+      this.fetchAll();
+    }
   }
 
   ngOnInit() {

@@ -29,7 +29,7 @@ export class ServicesFormComponent implements OnInit {
       description: ['', Validators.required],
       duration: [null, Validators.required],
       price: [0, Validators.min(1)],
-      comission: [0, Validators.min(1)]
+      comission: [0, Validators.min(1)],
     });
   }
   @Output() onCloseForm = new EventEmitter<boolean>();
@@ -39,7 +39,7 @@ export class ServicesFormComponent implements OnInit {
     this.file = file;
   }
   ngOnInit(): void {
-    console.log('onInit')
+    console.log('onInit');
     this.id.subscribe((id) => {
       if (id !== null) {
         this.loading = true;
@@ -70,7 +70,7 @@ export class ServicesFormComponent implements OnInit {
       }
     });
 
-    console.log('endonInit')
+    console.log('endonInit');
   }
 
   get title() {
@@ -91,7 +91,6 @@ export class ServicesFormComponent implements OnInit {
     return this.form?.get('comission');
   }
 
-
   transform(html: string): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(html);
   }
@@ -101,7 +100,7 @@ export class ServicesFormComponent implements OnInit {
     console.log(this.file);
     console.log(this.id.value);
     if (this.id.value === null) {
-      console.log("this.form.value['duration']", this.form.value['duration'])
+      console.log("this.form.value['duration']", this.form.value['duration']);
       const time = this.form.value['duration'].split(':');
       const data: CreateServiceDto = {
         name: this.form.value['name'],
@@ -111,7 +110,7 @@ export class ServicesFormComponent implements OnInit {
           minutes: time[1],
         },
         price: this.form.value['price'],
-        comission : this.form.value['comission'],
+        comission: this.form.value['comission'],
         photos:
           this.file === null
             ? undefined
@@ -167,5 +166,9 @@ export class ServicesFormComponent implements OnInit {
           this.onCloseForm.emit(false);
         });
     }
+  }
+  onCancel() {
+    this.form.reset();
+    this.onCloseForm.emit(false);
   }
 }
