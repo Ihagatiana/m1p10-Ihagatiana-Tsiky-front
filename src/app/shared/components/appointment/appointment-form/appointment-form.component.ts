@@ -1,5 +1,8 @@
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AppointmentService } from './../appointment.service';
+import { CreateAppointmentDto } from './../dto/appointment.dto';
 
 @Component({
   selector: 'app-appointment-form',
@@ -9,7 +12,13 @@ import { Component } from '@angular/core';
 export class AppointmentFormComponent {
   form: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder) {
+  loading = false;
+
+  @Output() onCloseForm = new EventEmitter<boolean>();
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly appointmentService: AppointmentService
+  ) {
     this.form = this.formBuilder.group({
       id: [null],
       clients: [null, Validators.required],
@@ -24,26 +33,54 @@ export class AppointmentFormComponent {
     return this.form.get('clients');
   }
 
+  get date() {
+    return this.form.get('date');
+  }
+
   get starttime() {
     return this.form.get('starttime');
   }
 
   get appservices() {
-    return this.form.get('appservices') as FormArray;
+    return this.form.controls['appservices'] as FormArray;
   }
 
   addService() {
     const service = this.appservices;
-    service.push(
-      this.formBuilder.group({
-        services: [null, Validators.required],
-        employes: [null, Validators.required],
-        order: [1, Validators.required],
-      })
-    );
+    let newGroup = this.formBuilder.group({
+      services: [null, Validators.required],
+      employes: [null, Validators.required],
+      order: [1, Validators.required],
+    });
+    service.push(newGroup);
   }
 
   submitForm() {
-    console.log(this.form.value);
+    this.loading = true;
+    const time = this.starttime?.value.split(':');
+    const data: CreateAppointmentDto = {
+      clients: 1,
+      date: new Date(this.date?.value.toString()),
+      starttime: { hours: time[0], minutes: time[1] },
+      appservices: this.appservices.value.map((elt: any) => {
+        return {
+          services: elt.services,
+          employes: elt.employes,
+          order: elt.order,
+        };
+      }),
+      state: 1,
+    };
+    this.appointmentService
+      .create(data)
+      .toPromise()
+      .catch(console.log)
+      .then(console.log)
+      .finally(() => {
+        this.loading = false;
+        this.form.reset();
+
+        this.onCloseForm.emit(false);
+      });
   }
 }

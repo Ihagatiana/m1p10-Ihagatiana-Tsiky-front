@@ -150,6 +150,7 @@
   <app-modal
     class="w-[400px]"
     [showModal]="showForm"
+    (onClose)="onToogleForm($event)"
     title="Prendre rendez-vous"
   >
     <app-appointment-form />

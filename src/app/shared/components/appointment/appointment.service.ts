@@ -5,7 +5,10 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
-import { ReponseAppointment } from './dto/appointment.dto';
+import {
+  CreateAppointmentDto,
+  ReponseAppointment,
+} from './dto/appointment.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +18,18 @@ export class AppointmentService {
   constructor(private readonly httpService: HttpClient) {}
 
   getAll(params?: PaginationQuery) {
-    return this.httpService.get<PaginatedResponse<ReponseAppointment>>(`${this.base_url}/appservices`, {
-      params,
-    });
+    return this.httpService.get<PaginatedResponse<ReponseAppointment>>(
+      `${this.base_url}/appservices`,
+      {
+        params,
+      }
+    );
+  }
+
+  create(data?: CreateAppointmentDto) {
+    return this.httpService.post<ReponseAppointment>(
+      `${this.base_url}/appservices`,
+      data
+    );
   }
 }
