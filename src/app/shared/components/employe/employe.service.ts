@@ -23,10 +23,11 @@ export class EmployeService {
     const formData = new FormData();
 
     formData.append('name', employe.name);
-    formData.append('firstname', employe.firtsname);
+    formData.append('firstname', employe.firstname);
     formData.append('photos', employe.photos);
     formData.append('starttime', JSON.stringify(employe.starttime));
     formData.append('endtime', JSON.stringify(employe.endtime));
+    formData.append('credentials', JSON.stringify(employe.credentials));
 
     return this.httpClient.post<any>(`${this.base_url}/employes`, formData);
   }
