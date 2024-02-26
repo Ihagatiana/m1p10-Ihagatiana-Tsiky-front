@@ -87,9 +87,11 @@
                     </p>
                   </div>
                 </td>
-                <td class="px-6">
+                <td class="px-6 w-28 overflow-x-clip">
                   <div class="flex items-center pl-5">
-                    <p class="text-sm leading-none text-gray-600 ml-2">
+                    <p
+                      class="text-sm leading-none text-gray-600 ml-2"
+                    >
                       {{ service.description }}
                     </p>
                   </div>
@@ -128,8 +130,7 @@
         <div
           (click)="onToogleDetailsService(service._id)"
           *ngFor="let service of services; let i = index"
-          class="flex-shrink-0 m-6 overflow-hidden rounded-lg max-w-xs shadow-lg hover:shadow-2xl hover:cursor-pointer ease-in-out transition-all"
-          [class.bg-pink-200]="i % 2 == 0"
+          class="flex-shrink-0 m-6 overflow-hidden rounded-lg max-w-xs shadow-lg hover:shadow-2xl hover:cursor-pointer ease-in-out transition-all bg-pink-200"
         >
           <div class="h-56">
             <img
