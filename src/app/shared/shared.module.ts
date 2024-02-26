@@ -20,6 +20,9 @@ import { AppointmentService } from './components/appointment/appointment.service
 import { AppointmentListComponent } from './components/appointment/appointment-list/appointment-list.component';
 import { AppointmentFormComponent } from './components/appointment/appointment-form/appointment-form.component';
 import { ServiceDetailsComponent } from './components/services/service-details/service-details.component';
+import { EmployeListComponent } from './components/employe/employe-list/employe-list.component';
+import { EmployeFormComponent } from './components/employe/employe-form/employe-form.component';
+import { EmployeService } from './components/employe/employe.service';
 
 @NgModule({
   imports: [
@@ -44,6 +47,8 @@ import { ServiceDetailsComponent } from './components/services/service-details/s
     AppointmentListComponent,
     AppointmentFormComponent,
     ServiceDetailsComponent,
+    EmployeListComponent,
+    EmployeFormComponent,
   ],
   exports: [
     NavBarComponent,
@@ -51,7 +56,14 @@ import { ServiceDetailsComponent } from './components/services/service-details/s
     ServicesListComponent,
     ServicesFormComponent,
     AppointmentListComponent,
+    EmployeListComponent,
+    EmployeFormComponent,
   ],
-  providers: [ServicesService, AuthServiceService, AppointmentService],
+  providers: [
+    ServicesService,
+    AuthServiceService,
+    AppointmentService,
+    EmployeService,
+  ],
 })
 export class SharedModule {}
