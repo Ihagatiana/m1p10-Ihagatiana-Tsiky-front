@@ -97,4 +97,9 @@ export class AppointmentFormComponent {
         this.onCloseForm.emit(false);
       });
   }
+
+  onCancel(){
+    this.form.reset();
+        this.onCloseForm.emit(false);
+  }
 }
