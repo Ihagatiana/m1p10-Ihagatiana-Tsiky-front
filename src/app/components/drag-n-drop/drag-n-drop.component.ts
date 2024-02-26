@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class DragNDropComponent {
   isDragOver: boolean = false;
   imageSrc: string | ArrayBuffer | null = null;
+  @Input() className = '';
 
   @Output() onDropEmit = new EventEmitter<File>();
 

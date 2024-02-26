@@ -12,11 +12,15 @@ export class EmployeListComponent {
   loading = false;
   page = new BehaviorSubject<number>(1);
   base_url = environment.baseUrl;
+  title = "Ajout d'un employé";
 
   pageNumbers = 0;
   elementPerPage = 4;
   employes: any[] = [];
   total = new BehaviorSubject<number>(0);
+
+  showForm: boolean = false;
+
 
   constructor(private readonly employesService: EmployeService) {}
 
@@ -43,5 +47,12 @@ export class EmployeListComponent {
   onPaginate(page: number) {
     this.page.next(page);
     this.fetchAll();
+  }
+
+  onToogleFormCreate(value: boolean) {
+    this.showForm = value;
+    if (value === false) {
+      this.fetchAll();
+    }
   }
 }

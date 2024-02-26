@@ -3,7 +3,7 @@
   (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave($event)"
   (drop)="onDrop($event)"
-  class="w-64 h-auto border-2 border-dashed border-[#ccc] text-center p-5 m-5"
+  [class]="'w-64 h-auto border-2 border-dashed border-[#ccc] text-center p-5 m-5 ' +className"
 >
   <label class="cursor-pointer" for="fileInput" *ngIf="imageSrc === null"
     >Glissez et déposez une image ici <br />
@@ -16,7 +16,7 @@
     class="hidden"
     (change)="onSelectedFile($event)"
   />
-  <div *ngIf="imageSrc !== null">
-    <img [src]="imageSrc" alt="Preview" />
+  <div *ngIf="imageSrc !== null" [class]="className">
+    <img [src]="imageSrc" alt="Preview"  [class]="className"/>
   </div>
 </div>
