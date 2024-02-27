@@ -2,6 +2,7 @@ import { AuthServiceService } from './../../../shared/services/auth-service.serv
 import { LoginService } from './service/login.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly loginService: LoginService,
-    private readonly authService: AuthServiceService
+    private readonly authService: AuthServiceService,
+    private readonly router: Router
   ) {
     this.form = this.formBuilder.group({
       email: [
@@ -33,12 +35,20 @@ export class LoginComponent {
     this.loading = true;
     this.loginService.onLogIn(this.form.value).subscribe(
       (data) => {
+        localStorage.setItem('user', JSON.stringify(data));
         this.authService.updateLoggedInRole(data.roles);
         this.authService.updateLoggedInState(true);
         this.authService.updateLoggedInName(data.name);
         this.authService.updateLoggedprofilePic(
           data.photo.length > 0 ? data.photo[0] : null
         );
+        if (data.roles === 'client') {
+          this.router.navigate(['client']);
+        } else if (data.roles === 'manager') {
+          this.router.navigate(['manager']);
+        } else {
+          this.router.navigate(['employee']);
+        }
       },
       (err) => {
         console.log(err);

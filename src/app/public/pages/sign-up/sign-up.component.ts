@@ -1,5 +1,7 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SignUpService } from './service/sign-up.service';
 
 @Component({
@@ -13,7 +15,9 @@ export class SignUpComponent {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly signUpService: SignUpService
+    private readonly signUpService: SignUpService,
+    private readonly router: Router,
+    private readonly toast: ToastrService
   ) {
     this.form = this.formBuilder.group({
       email: [
@@ -44,15 +48,14 @@ export class SignUpComponent {
     };
     this.signUpService.signUp(data).subscribe(
       (data) => {
-        console.log(data);
         this.loading = false;
+        this.toast.success('Vous pouvez vous connecter', 'Utilisateur créé');
+        this.router.navigate(['login']);
       },
       (err) => {
-        console.error(err);
         this.loading = false;
       }
     );
-    console.log(this.form.value);
   }
 
   get email() {
