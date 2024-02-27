@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SignUpService } from './service/sign-up.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,10 @@ export class SignUpComponent {
   form: FormGroup;
   loading = false;
 
-  constructor(private readonly formBuilder: FormBuilder) {
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly signUpService: SignUpService
+  ) {
     this.form = this.formBuilder.group({
       email: [
         '',
@@ -21,19 +25,34 @@ export class SignUpComponent {
       ],
       password: ['', Validators.required],
       confirmationPassword: ['', Validators.required],
-      lastname: ['', Validators.required],
+      name: ['', Validators.required],
       firstname: ['', Validators.required],
     });
   }
 
   onSignUp() {
     this.loading = true;
-    // console.log(this.form.value);
 
-    setTimeout(() => {
-      console.log(this.form.value);
-      this.loading = false;
-    }, 15000);
+    const data = {
+      name: this.form.get('name')?.value,
+      firstname: this.form.get('firstname')?.value,
+      credential: {
+        email: this.form.get('email')?.value,
+        password: this.form.get('password')?.value,
+      },
+      photos: [],
+    };
+    this.signUpService.signUp(data).subscribe(
+      (data) => {
+        console.log(data);
+        this.loading = false;
+      },
+      (err) => {
+        console.error(err);
+        this.loading = false;
+      }
+    );
+    console.log(this.form.value);
   }
 
   get email() {
@@ -51,7 +70,7 @@ export class SignUpComponent {
   get firstname() {
     return this.form.get('firstname');
   }
-  get lastname() {
-    return this.form.get('lastname');
+  get name() {
+    return this.form.get('name');
   }
 }

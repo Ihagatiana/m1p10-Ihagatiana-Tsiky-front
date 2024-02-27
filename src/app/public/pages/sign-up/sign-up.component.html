@@ -23,13 +23,11 @@
                 <form [formGroup]="form" (submit)="onSignUp()">
                   <div class="relative">
                     <input
-                      type="lastname"
-                      formControlName="lastname"
+                      type="text"
+                      formControlName="name"
                       class="peer block min-h-[auto] w-full rounded border-0 !border-b bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear"
-                      id="lastname"
-                      [class.!border-red-500]="
-                        lastname?.dirty && lastname?.invalid
-                      "
+                      id="name"
+                      [class.!border-red-500]="name?.dirty && name?.invalid"
                     />
                     <label
                       for="lastname"
@@ -96,7 +94,7 @@
                   <div class="relative mt-4">
                     <input
                       formControlName="confirmationPassword"
-                      type="confirmationPassword"
+                      type="password"
                       class="block min-h-[auto] w-full !border-b rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear"
                       id="pwd"
                       [class.!border-red-500]="

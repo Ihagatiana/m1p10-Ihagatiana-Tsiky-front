@@ -17,6 +17,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignUpService } from './pages/sign-up/service/sign-up.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,6 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [LoginService],
+  providers: [LoginService, SignUpService],
 })
 export class PublicModule {}
