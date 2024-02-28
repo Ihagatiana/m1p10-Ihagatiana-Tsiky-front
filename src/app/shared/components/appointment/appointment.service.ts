@@ -35,6 +35,13 @@ export class AppointmentService {
     );
   }
 
+  getAllClient(clientId: string, params?: PaginationQuery) {
+    return this.httpService.get<PaginatedResponse<ReponseAppointment>>(
+      `${this.base_url}/clients/appservices/${clientId}`,
+      { params }
+    );
+  }
+
   create(data?: CreateAppointmentDto) {
     return this.httpService.post<ReponseAppointment>(
       `${this.base_url}/appservices`,

@@ -21,9 +21,8 @@ export type ReponseAppointment = {
 
 export type CreateAppointmentDto = {
   date: Date;
-  clients: number;
+  clients: string;
   starttime: Time;
-  state: number;
 
   appservices: CreateAppServiceDto[];
 };
@@ -32,4 +31,6 @@ export type CreateAppServiceDto = {
   services: number;
   employes: number;
   order: number;
+
+  states: number;
 };
