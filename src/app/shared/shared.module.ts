@@ -61,7 +61,6 @@ import { EmployeService } from './components/employe/employe.service';
   ],
   providers: [
     ServicesService,
-    AuthServiceService,
     AppointmentService,
     EmployeService,
   ],
