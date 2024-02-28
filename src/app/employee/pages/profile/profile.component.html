@@ -1,107 +1,155 @@
-<div class="h-[700px] flex items-center justify-center w-[1500px]">
-  <app-loader
+<div
+  class="min-h-[700px] flex justify-center bg-center min-w-[1500px] px-4 sm:px-6 lg:px-8"
+>
+<app-loader
     [loading]="loading"
-    spinnerClassName="!border-blue-300"
+    spinnerClassName="border-blue-400"
   ></app-loader>
-  <div class="w-auto shadow flex flex-col items-center gap-5 h-full p-8 pr-12">
-    <p
-      tabindex="0"
-      class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
-    >
-      Modifier vos informations
-    </p>
-    <div class="flex justify-center items-center">
-      <div class="h-full flex w-full">
-        <div class="p-4 sm:p-6 lg:p-8 bg-white">
-          <div class="w-full h-72 flex justify-center pt-14">
-            <img
-              id="showImage "
-              class="rounded-full border"
-              src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200"
-              alt=""
-            />
+  <div
+    class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10"
+  >
+    <div class="grid gap-8 grid-cols-1">
+      <div class="flex flex-col">
+        <div class="flex flex-col sm:flex-row items-center">
+          <h2 class="font-semibold text-lg mr-auto">
+            Modifier vos informations
+          </h2>
+          <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
+        </div>
+        <div class="mt-5">
+          <div class="form">
+            <div class="md:space-y-2 mb-3">
+              <label class="text-xs font-semibold text-gray-600 py-2"
+                >Votre photo<abbr title="required">*</abbr></label
+              >
+              <div class="flex items-center py-6">
+                <div
+                  class="w-12 h-12 mr-4 flex-none rounded-xl border overflow-hidden"
+                >
+                  <img
+                    class="w-12 h-12 mr-4 object-cover"
+                    src="https://images.unsplash.com/photo-1611867967135-0faab97d1530?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1352&amp;q=80"
+                    alt="Avatar Upload"
+                  />
+                </div>
+                <label class="cursor-pointer">
+                  <span
+                    class="focus:outline-none text-white text-sm py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-400 hover:shadow-lg"
+                    >Browse</span
+                  >
+                  <input
+                    type="file"
+                    class="hidden"
+                    :multiple="multiple"
+                    :accept="accept"
+                  />
+                </label>
+              </div>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="submitForm()">
+              <div class="md:flex flex-row md:space-x-4 w-full text-xs">
+                <div class="mb-3 space-y-2 w-full text-xs">
+                  <label class="font-semibold text-gray-600 py-2"
+                    >Nom <abbr title="required">*</abbr></label
+                  >
+                  <input
+                    placeholder="Nom"
+                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    required="required"
+                    type="text"
+                    name="name"
+                    id="name"
+                    formControlName="name"
+                  />
+                </div>
+                <div class="mb-3 space-y-2 w-full text-xs">
+                  <label class="font-semibold text-gray-600 py-2"
+                    >Prénom
+                    <abbr class="text-red-500" title="Champs requis"
+                      >*</abbr
+                    ></label
+                  >
+                  <input
+                    placeholder="Prénom"
+                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    required="required"
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                    formControlName="firstname"
+                  />
+                </div>
+              </div>
+              <div class="mb-3 space-y-2 w-full text-xs">
+                <label class="font-semibold text-gray-600 py-2"
+                  >Email
+                  <abbr class="text-red-500" title="Champs requis"
+                    >*</abbr
+                  ></label
+                >
+                <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+                  <input
+                    type="email"
+                    class="flex-shrink flex-grow flex-auto leading-normal w-px border border-l-0 h-10 border-grey-light rounded-lg px-3 focus:border-blue focus:shadow"
+                    formControlName="email"
+                  />
+                </div>
+              </div>
+
+              <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
+                <div class="w-full flex flex-col mb-3">
+                  <label class="font-semibold text-gray-600 py-2"
+                    >Heure de début
+                    <abbr class="text-red-500" title="Champs requis"
+                      >*</abbr
+                    ></label
+                  >
+                  <input
+                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    type="time"
+                    name="starttime"
+                    id="starttime"
+                    formControlName="starttime"
+                  />
+                </div>
+                <div class="w-full flex flex-col mb-3">
+                  <label class="font-semibold text-gray-600 py-2"
+                    >Heure de fin<abbr
+                      class="text-red-500"
+                      title="Champs requis"
+                      >*</abbr
+                    ></label
+                  >
+                  <input
+                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    type="time"
+                    name="endtime"
+                    id="endtime"
+                    formControlName="endtime"
+                  />
+                  <p class="text-sm text-red-500 hidden mt-3" id="error">
+                    Please fill out this field.
+                  </p>
+                </div>
+              </div>
+
+              <p class="text-xs text-red-500 text-right my-3 mt-16">
+                Les champs requis sont marqués avec des asterisks
+                <abbr title="Required field">*</abbr>
+              </p>
+              <div
+                class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse"
+              >
+                <button
+                  type="submit"
+                  class="mb-2 md:mb-0 bg-blue-500 hover:bg-blue-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg"
+                >
+                  Enregistrer
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-
-        <form
-          class="bg-white lg:ml-4"
-          [formGroup]="form"
-          (ngSubmit)="submitForm()"
-        >
-          <div class="rounded p-6">
-            <div class="pb-6">
-              <label for="name" class="font-semibold text-gray-700 block pb-1"
-                >Nom</label
-              >
-              <div class="flex">
-                <input
-                  id="name"
-                  class="border-1 rounded-r px-4 py-2 w-full"
-                  type="text"
-                  formControlName="name"
-                />
-              </div>
-            </div>
-            <div class="pb-4">
-              <label
-                for="firstname"
-                class="font-semibold text-gray-700 block pb-1"
-                >Prénom</label
-              >
-              <input
-                id="firstname"
-                class="border-1 rounded-r px-4 py-2 w-full"
-                type="text"
-                formControlName="firstname"
-              />
-            </div>
-            <div class="pb-4">
-              <label for="email" class="font-semibold text-gray-700 block pb-1"
-                >Email</label
-              >
-              <input
-                id="email"
-                class="border-1 rounded-r px-4 py-2 w-full"
-                type="email"
-                formControlName="email"
-              />
-            </div>
-
-            <div class="pb-4 flex-col">
-              <label class="font-semibold text-gray-700 block pb-1"
-                >Horaire de travail</label
-              >
-              <div class="flex gap-3">
-                <input
-                  id="starttime"
-                  class="border-1 rounded-r px-4 py-2 w-full"
-                  type="time"
-                  formControlName="starttime"
-                />
-                <input
-                  id="endtime"
-                  class="border-1 rounded-r px-4 py-2 w-full"
-                  type="time"
-                  formControlName="endtime"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4 mb-5">
-            <button
-              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
-              type="button"
-            >
-              Annuler
-            </button>
-            <button
-              class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-md"
-              type="submit"
-            >
-              Enregistrer
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
