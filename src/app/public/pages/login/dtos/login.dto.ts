@@ -4,10 +4,13 @@ export type LoginDto = {
 };
 
 export type AuthData = {
-  credential: string;
-  date: string;
-  name: string;
-  roles: string;
-  token: string;
-  photo: any[];
+  session: {
+    credential: string;
+    date: string;
+    name: string;
+    roles: string;
+    token: string;
+    photo: any[];
+  };
+  profile_id: string;
 };

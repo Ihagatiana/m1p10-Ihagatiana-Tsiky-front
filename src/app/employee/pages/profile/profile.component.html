@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="w-full p-8 bg-white lg:ml-4">
+    <div class="w-full p-8 bg-white lg:ml-4" [formGroup]="form">
       <div class="rounded p-6">
         <div class="pb-6">
           <label for="name" class="font-semibold text-gray-700 block pb-1"
@@ -19,11 +19,11 @@
           >
           <div class="flex">
             <input
-              disabled
+
               id="name"
               class="border-1 rounded-r px-4 py-2 w-full"
               type="text"
-              value="Rakoto"
+              formControlName="name"
             />
           </div>
         </div>
@@ -32,11 +32,11 @@
             >Prénom</label
           >
           <input
-            disabled
+
             id="firstname"
             class="border-1 rounded-r px-4 py-2 w-full"
             type="text"
-            value="Jean"
+            formControlName="firstname"
           />
         </div>
         <div class="pb-4">
@@ -44,11 +44,11 @@
             >Email</label
           >
           <input
-            disabled
+
             id="email"
             class="border-1 rounded-r px-4 py-2 w-full"
             type="email"
-            value="Jean@yopmail.fr"
+            formControlName="email"
           />
         </div>
 
@@ -58,16 +58,18 @@
           >
           <div class="flex gap-3">
             <input
-              disabled
-              id="firstname"
+
+              id="starttime"
               class="border-1 rounded-r px-4 py-2 w-full"
               type="time"
+              formControlName="starttime"
             />
             <input
-              disabled
-              id="firstname"
+
+              id="endtime"
               class="border-1 rounded-r px-4 py-2 w-full"
               type="time"
+              formControlName="endtime"
             />
           </div>
         </div>

@@ -34,8 +34,10 @@ export class LoginComponent {
   onLogin() {
     this.loading = true;
     this.loginService.onLogIn(this.form.value).subscribe(
-      (data) => {
+      (response) => {
+        const data = response.session;
         localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('profile_id', response.profile_id);
         this.authService.updateLoggedInRole(data.roles);
         this.authService.updateLoggedInState(true);
         this.authService.updateLoggedInName(data.name);
