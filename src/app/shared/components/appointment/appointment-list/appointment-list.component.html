@@ -39,7 +39,9 @@
               class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
             >
               <div class="flex items-center pl-5">
-                <p class="leading-none text-gray-700 mr-2">Employé</p>
+                <p class="leading-none text-gray-700 mr-2">
+                  {{ role === "client" ? "Employé" : "Client" }}
+                </p>
               </div>
             </th>
             <th
@@ -85,7 +87,11 @@
             <td class="px-6">
               <div class="flex items-center pl-5">
                 <p class="text-sm leading-none text-gray-600 ml-2">
-                  {{ appointment.employes?.name ?? "N/A" }}
+                  {{
+                    role === "client"
+                      ? appointment.employes?.name ?? "N/A"
+                      : appointment.appointments?.clients?.name ?? "N/A"
+                  }}
                 </p>
               </div>
             </td>
