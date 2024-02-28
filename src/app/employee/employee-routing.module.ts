@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     component: EmployeeLayoutComponent,
     children: [
-      { path: '', component: EmployeeAppointmentComponent },
       { path: 'appointments', component: EmployeeAppointmentComponent },
+      { path: '', redirectTo: 'appointments', pathMatch: 'full' },
       { path: 'profil', component: ProfileComponent },
     ],
   },
