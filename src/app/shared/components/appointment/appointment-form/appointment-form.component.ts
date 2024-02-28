@@ -74,32 +74,38 @@ export class AppointmentFormComponent {
   }
 
   submitForm() {
-    this.loading = true;
-    const time = this.starttime?.value.split(':');
-    const data: CreateAppointmentDto = {
-      clients: 1,
-      date: new Date(this.date?.value.toString()),
-      starttime: { hours: time[0], minutes: time[1] },
-      appservices: this.appservices.value.map((elt: any) => {
-        return {
-          services: elt.services,
-          employes: elt.employes,
-          order: elt.order,
-        };
-      }),
-      state: 1,
-    };
-    this.appointmentService
-      .create(data)
-      .subscribe(() => {
-        this.loading = false;
-        this.form.reset();
-        this.onCloseForm.emit(false);
-      });
+    const profile_id = localStorage.getItem('profile_id');
+    if (profile_id !== null) {
+      this.loading = true;
+      const time = this.starttime?.value.split(':');
+      const data: CreateAppointmentDto = {
+        clients: profile_id,
+        date: new Date(this.date?.value.toString()),
+        starttime: { hours: time[0], minutes: time[1] },
+        appservices: this.appservices.value.map((elt: any) => {
+          return {
+            services: elt.services,
+            employes: elt.employes,
+            order: elt.order,
+            states: 1,
+          };
+        }),
+      };
+      this.appointmentService.create(data).subscribe(
+        () => {
+          this.loading = false;
+          this.form.reset();
+          this.onCloseForm.emit(false);
+        },
+        () => {
+          this.loading = false;
+        }
+      );
+    }
   }
 
-  onCancel(){
+  onCancel() {
     this.form.reset();
-        this.onCloseForm.emit(false);
+    this.onCloseForm.emit(false);
   }
 }

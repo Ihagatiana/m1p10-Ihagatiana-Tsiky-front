@@ -83,7 +83,37 @@ export class AppointmentListComponent {
     }
   }
 
-  fetchClient() {}
+  fetchClient() {
+    const id = localStorage.getItem('profile_id');
+    if (id) {
+      this.loading = true;
+      this.service
+        .getAllClient(id, {
+          limit: this.elementPerPage,
+          offset: (this.page.value - 1) * this.elementPerPage,
+        })
+        .subscribe(
+          (response) => {
+            this.appointments = response.data.map((elt) => {
+              return {
+                ...elt,
+                appointments: {
+                  ...elt.appointments,
+                  date: elt.appointments?.date
+                    ? humanizeDate(new Date(elt.appointments.date))
+                    : 'N/A',
+                },
+              };
+            });
+            this.total.next(response.total);
+            this.loading = false;
+          },
+          (err) => {
+            this.loading = false;
+          }
+        );
+    }
+  }
   onPaginate(page: number) {
     this.page.next(page);
     this.fetchAll();
