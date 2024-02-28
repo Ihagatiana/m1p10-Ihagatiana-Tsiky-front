@@ -1,6 +1,9 @@
-<app-paper className="mx-10">
+<app-paper className="mx-10 w-[1500px]">
   <app-section title="Nos Services" className="bg-slate-200  ">
-    <div class="hidden md:flex justify-end !mr-8 gap-4 mb-4">
+    <div
+      *ngIf="role === 'manager'"
+      class="hidden md:flex justify-end !mr-8 gap-4 mb-4"
+    >
       <div>
         <button
           class="bg-blue-500 text-white active:bg-blue-500 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -40,10 +43,7 @@
         [loading]="loading"
         spinnerClassName="border-blue-400"
       ></app-loader>
-      <div
-        *ngIf="displayMode === 'list'"
-        class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10"
-      >
+      <div *ngIf="displayMode === 'list'" class="bg-white w-[1500px]">
         <div class="overflow-x-auto">
           <table class="w-full whitespace-nowrap">
             <thead>
@@ -87,11 +87,9 @@
                     </p>
                   </div>
                 </td>
-                <td class="px-6 w-28 overflow-x-clip">
+                <td class="px-6 max-w-48 overflow-x-clip">
                   <div class="flex items-center pl-5">
-                    <p
-                      class="text-sm leading-none text-gray-600 ml-2"
-                    >
+                    <p class="text-sm leading-none text-gray-600 ml-2">
                       {{ service.description }}
                     </p>
                   </div>
@@ -163,7 +161,7 @@
                 class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-slate-400 hover:bg-indigo-600 focus:outline-none rounded"
               >
                 <p class="text-sm font-medium leading-none text-white">
-                  Prendre rendez-vous
+                  Voir détails
                 </p>
               </button>
             </div>
@@ -172,6 +170,7 @@
       </div>
     </div>
     <app-pagination
+      *ngIf="usePagination"
       (onPaginate)="onPaginate($event)"
       [totalElements]="total.value"
       [elementPerPage]="elementPerPage"

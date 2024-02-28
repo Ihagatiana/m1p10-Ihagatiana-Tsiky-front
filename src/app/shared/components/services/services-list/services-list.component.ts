@@ -13,11 +13,14 @@ export class ServicesListComponent {
   loading = false;
   @Input() canSwitchView = false;
   displayMode: 'list' | 'grid' = 'grid';
+  @Input() role: 'public' | 'manager' = 'public';
   page = new BehaviorSubject<number>(1);
   pageNumbers = 0;
   elementPerPage = 4;
   services: Service[] = [];
   total = new BehaviorSubject<number>(0);
+
+  @Input()usePagination = true
 
   seriveDetailsId = new BehaviorSubject<Service['_id'] | null>('');
 

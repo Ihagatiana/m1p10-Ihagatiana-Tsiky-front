@@ -1,3 +1,4 @@
+import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import { AuthServiceService } from './shared/services/auth-service.service';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
+    FooterComponent,
     ToastrModule.forRoot(),
   ],
   providers: [
