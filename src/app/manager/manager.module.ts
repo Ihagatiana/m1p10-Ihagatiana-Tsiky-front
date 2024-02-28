@@ -8,12 +8,14 @@ import { CommonModule } from '@angular/common';
 import { ManagerLayoutComponent } from './manager-layout/manager-layout.component';
 import { EmployesComponent } from './pages/employes/employes.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { ManagerServicesComponent } from './pages/manager-services/manager-services.component';
 
 @NgModule({
   declarations: [
     ManagerLayoutComponent,
     EmployesComponent,
     StatisticsComponent,
+    ManagerServicesComponent,
   ],
   imports: [
     CommonModule,
