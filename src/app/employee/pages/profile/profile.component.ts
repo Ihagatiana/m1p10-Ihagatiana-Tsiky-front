@@ -28,6 +28,7 @@ export class ProfileComponent {
   }
 
   initForm() {
+    this.loading = true
     const profile_id = localStorage.getItem('profile_id');
     if (profile_id) {
       this.profilService.getById(decodeURIComponent(profile_id)).subscribe(
@@ -54,6 +55,72 @@ export class ProfileComponent {
           this.form.get('email')?.patchValue(data.credential.email);
           this.form.get('starttime')?.patchValue(starttime);
           this.form.get('endtime')?.patchValue(endtime);
+          this.form.markAsPristine();
+          this.loading = false;
+        },
+        (err) => {
+          this.loading = false;
+        },
+        () => {
+          this.loading = false;
+        }
+      );
+    }
+  }
+  submitForm() {
+    const profile_id = localStorage.getItem('profile_id');
+    if (profile_id) {
+      let data = {};
+
+      if (this.form.get('name') !== null && this.form.get('name')?.dirty) {
+        data = { ...data, name: this.form.get('name')!.value };
+      }
+
+      if (
+        this.form.get('firstname') !== null &&
+        this.form.get('firstname')?.dirty
+      ) {
+        data = { ...data, firstname: this.form.get('firstname')!.value };
+      }
+
+      if (this.form.get('email') !== null && this.form.get('email')?.dirty) {
+        data = {
+          ...data,
+          credential: { email: this.form.get('email')!.value },
+        };
+      }
+
+      if (
+        this.form.get('starttime') !== null &&
+        this.form.get('starttime')?.dirty
+      ) {
+        const starttime = this.form.value['starttime'].split(':');
+        data = {
+          ...data,
+          starttime: {
+            hours: starttime[0],
+            minutes: starttime[1],
+          },
+        };
+      }
+
+      if (
+        this.form.get('endtime') !== null &&
+        this.form.get('endtime')?.dirty
+      ) {
+        const endtime = this.form.value['endtime'].split(':');
+        data = {
+          ...data,
+          endtime: {
+            hours: endtime[0],
+            minutes: endtime[1],
+          },
+        };
+      }
+      this.loading = true;
+      this.profilService.udpate(profile_id, data).subscribe(
+        () => {
+          this.form.markAsPristine();
           this.loading = false;
         },
         (err) => {

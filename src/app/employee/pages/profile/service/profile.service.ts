@@ -13,7 +13,7 @@ export class ProfileService {
     return this.httpClient.get<any>(`${this.baseUrl}/employes/${id}`);
   }
 
-  udpate(data: any) {
-    return this.httpClient.put<any>(`${this.baseUrl}/employes`, data);
+  udpate(id: string, data: any) {
+    return this.httpClient.put<any>(`${this.baseUrl}/employes/${id}`, data);
   }
 }

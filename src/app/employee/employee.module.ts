@@ -1,3 +1,4 @@
+import { LoaderComponent } from './../components/loader/loader.component';
 import { ProfileService } from './pages/profile/service/profile.service';
 import { PaperComponent } from './../components/paper/paper.component';
 import { SharedModule } from './../shared/shared.module';
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     PaperComponent,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoaderComponent,
   ],
   providers: [ProfileService],
 })
