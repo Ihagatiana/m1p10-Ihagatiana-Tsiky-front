@@ -43,10 +43,7 @@
         [loading]="loading"
         spinnerClassName="border-blue-400"
       ></app-loader>
-      <div
-        *ngIf="displayMode === 'list'"
-        class="bg-white w-[1500px]"
-      >
+      <div *ngIf="displayMode === 'list'" class="bg-white w-[1500px]">
         <div class="overflow-x-auto">
           <table class="w-full whitespace-nowrap">
             <thead>
@@ -164,7 +161,7 @@
                 class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-slate-400 hover:bg-indigo-600 focus:outline-none rounded"
               >
                 <p class="text-sm font-medium leading-none text-white">
-                 Voir détails
+                  Voir détails
                 </p>
               </button>
             </div>
@@ -173,6 +170,7 @@
       </div>
     </div>
     <app-pagination
+      *ngIf="usePagination"
       (onPaginate)="onPaginate($event)"
       [totalElements]="total.value"
       [elementPerPage]="elementPerPage"
