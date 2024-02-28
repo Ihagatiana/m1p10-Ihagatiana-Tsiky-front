@@ -1,3 +1,4 @@
+import { environment } from './../../../../environment/environment.prod';
 import { AuthServiceService } from './../../services/auth-service.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
+  baseUrl = environment.baseUrl;
   isLoggedIn = false;
   loggedInRole: string | null = null;
   loggedInprofilePicUrl: string | null = null;
@@ -45,8 +47,8 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  onLogOut(){
-    localStorage.clear()
-    this.authService.onLogOut()
+  onLogOut() {
+    localStorage.clear();
+    this.authService.onLogOut();
   }
 }

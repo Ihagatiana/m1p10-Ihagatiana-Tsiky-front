@@ -1,3 +1,7 @@
+import { LoaderComponent } from './../components/loader/loader.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ClientProfilService } from './pages/client-profile/service/client-profil.service';
 import { ClientRoutingModule } from './client-routing.module';
 import { PaperComponent } from './../components/paper/paper.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +17,15 @@ import { ClientProfileComponent } from './pages/client-profile/client-profile.co
     ClientAppointmentsComponent,
     ClientProfileComponent,
   ],
-  imports: [CommonModule, ClientRoutingModule, PaperComponent, SharedModule],
+  imports: [
+    CommonModule,
+    ClientRoutingModule,
+    PaperComponent,
+    SharedModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    LoaderComponent,
+  ],
+  providers: [ClientProfilService],
 })
 export class ClientModule {}
