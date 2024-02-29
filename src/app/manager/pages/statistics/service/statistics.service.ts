@@ -12,4 +12,17 @@ export class StatisticsService {
   get() {
     return this.httpClient.get<any>(`${this.base_url}/statistics`);
   }
+
+  getBenefitsPerMonth(params: BenefitsDto) {
+    return this.httpClient.get<any>(`${this.base_url}/statistics/benefits`, {
+      params,
+    });
+  }
 }
+
+type BenefitsDto = {
+  salary: number;
+  rent: number;
+  purchases: number;
+  expenses: number;
+};

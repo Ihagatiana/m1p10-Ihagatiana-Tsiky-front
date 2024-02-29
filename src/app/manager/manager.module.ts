@@ -1,3 +1,5 @@
+import { LoaderComponent } from './../components/loader/loader.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StatisticsService } from './pages/statistics/service/statistics.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaperComponent } from './../components/paper/paper.component';
@@ -22,9 +24,11 @@ import { ManagerPaymentsComponent } from './pages/manager-payments/manager-payme
   imports: [
     CommonModule,
     ManagerRoutingModule,
+    ReactiveFormsModule,
     SharedModule,
     PaperComponent,
     HttpClientModule,
+    LoaderComponent,
   ],
   providers: [StatisticsService],
 })
