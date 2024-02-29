@@ -38,11 +38,16 @@ export class LoginComponent {
         const data = response.session;
         localStorage.setItem('user', JSON.stringify(data));
         localStorage.setItem('profile_id', response.profile_id);
+        localStorage.setItem('roles', data.roles);
+        localStorage.setItem('connected', 'true');
+        localStorage.setItem('name', data.name);
+        if (data.photo.length > 0)
+          localStorage.setItem('photo', data.photo[0].url);
         this.authService.updateLoggedInRole(data.roles);
         this.authService.updateLoggedInState(true);
         this.authService.updateLoggedInName(data.name);
         this.authService.updateLoggedprofilePic(
-          data.photo.length > 0 ? data.photo[0] : null
+          data.photo.length > 0 ? data.photo[0].url : null
         );
         if (data.roles === 'client') {
           this.router.navigate(['client']);

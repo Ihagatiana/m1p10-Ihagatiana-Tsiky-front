@@ -1,5 +1,5 @@
-<app-paper [padding]="true">
-  <div class="flex justify-center items-center">
+<app-paper>
+  <!-- <div class="flex justify-center items-center">
     <div class="w-[800px]">
       <canvas id="bar_chart"></canvas>
     </div>
@@ -7,5 +7,51 @@
       <canvas id="line_chart"></canvas>
     </div>
     <div></div>
+  </div> -->
+  <div class="flex justify-center bg-gray-100  p-5">
+    <!--==== frist div begins here ====--->
+    <div class="container mr-5 mx-auto bg-white shadow-xl">
+      <div class="">
+        <div class="bg-white my-6">
+          <table class="text-left w-full border-collapse">
+            <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
+            <thead>
+              <tr>
+                <th
+                  class="py-4 px-6 bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light"
+                >
+                  Employé
+                </th>
+                <th
+                  class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light"
+                >
+                  Moyenne de temps de travail
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let avgTimePerEmp of avgTimePerEmps"
+                class="hover:bg-grey-lighter"
+              >
+                <td class="py-4 px-6 border-b border-grey-light">
+                  {{ avgTimePerEmp.name }}
+                </td>
+                <td class="py-4 px-6 text-center border-b border-grey-light">
+                  {{
+                    avgTimePerEmp.avgTime.hours +
+                      ":" +
+                      avgTimePerEmp.avgTime.minutes
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex bg-gray-100 p-5 ">
+    <canvas id="line_chart"></canvas>
   </div>
 </app-paper>
