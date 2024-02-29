@@ -8,22 +8,25 @@ import { Chart, registerables } from 'chart.js';
   styleUrls: ['./statistics.component.scss'],
 })
 export class StatisticsComponent {
+  avgTimePerEmps: any[] = [];
   constructor(private readonly statService: StatisticsService) {
     Chart.register(...registerables);
   }
 
   ngOnInit() {
     this.statService.get().subscribe((data) => {
-      console.log(data);
-      this.initBarChar(
-        data.appPerEmp,
-        data.appPerEmp.map((elt: any) => elt._id)
-      );
+      // this.initBarChar(
+      //   data.appPerEmp,
+      //   data.appPerEmp.map((elt: any) => elt._id)
+      // );
 
       this.initLineChart(
         data.appPerDate,
         data.appPerDate.map((elt: any) => elt.date)
       );
+
+      this.avgTimePerEmps = data.hoursPerEmp;
+      console.log(this.avgTimePerEmps);
     });
   }
   initBarChar(data: any, labels: string[]) {
@@ -58,10 +61,8 @@ export class StatisticsComponent {
         labels: labels,
         datasets: [
           {
-            label: 'Évolution du nombre de service vendus',
-            data: data.map((elt: any) =>
-              elt.numberOfServices
-            ),
+            label: 'Nombre de réservation par mois',
+            data: data.map((elt: any) => elt.numberOfServices),
           },
         ],
       },

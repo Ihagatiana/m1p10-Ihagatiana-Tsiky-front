@@ -68,7 +68,7 @@
                       [src]="
                         loggedInprofilePicUrl === null
                           ? '../../../../assets/static/img/unknwon.png'
-                          : baseUrl+'/'+loggedInprofilePicUrl
+                          : baseUrl + '/' + loggedInprofilePicUrl
                       "
                       alt="Avatar"
                     />
@@ -88,12 +88,6 @@
                   class="text-sm italic px-4 py-2 block w-full bg-transparent"
                 >
                   Mon profil
-                </a>
-                <a
-                  routerLink="/services"
-                  class="text-sm italic px-4 py-2 block w-full bg-transparent"
-                >
-                  Mes rendez vous
                 </a>
                 <a
                   (click)="onLogOut()"
