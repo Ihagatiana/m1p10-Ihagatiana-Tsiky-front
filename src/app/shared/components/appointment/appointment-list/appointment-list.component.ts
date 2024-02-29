@@ -1,3 +1,4 @@
+import { PaymentService } from './../../payment/payment.service';
 import { BehaviorSubject } from 'rxjs';
 import { Component, Input } from '@angular/core';
 import { AppointmentService } from '../appointment.service';
@@ -24,7 +25,8 @@ export class AppointmentListComponent {
 
   constructor(
     public readonly service: AppointmentService,
-    private readonly authService: AuthServiceService
+    private readonly authService: AuthServiceService,
+    private readonly paymentService: PaymentService
   ) {}
   onToogleForm(value: boolean) {
     this.showForm = value;
@@ -128,5 +130,24 @@ export class AppointmentListComponent {
       },
       () => (this.loading = false)
     );
+  }
+
+  pay(id: string) {
+    const profile_id = localStorage.getItem('profile_id');
+    if (profile_id) {
+      const data = {
+        clients: profile_id,
+        appservices: id,
+        date: new Date(),
+      };
+      this.loading = true;
+      this.paymentService.pay(data).subscribe(
+        () => {
+          this.loading = false;
+          this.fetchClient();
+        },
+        () => (this.loading = false)
+      );
+    }
   }
 }
