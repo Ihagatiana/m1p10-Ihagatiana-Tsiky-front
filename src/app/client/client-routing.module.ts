@@ -1,3 +1,4 @@
+import { ClientPaymentsComponent } from './pages/client-payments/client-payments.component';
 import { ClientAppointmentsComponent } from './pages/client-appointments/client-appointments.component';
 import { ClientLayoutComponent } from './client-layout/client-layout.component';
 import { NgModule } from '@angular/core';
@@ -10,8 +11,9 @@ const routes: Routes = [
     component: ClientLayoutComponent,
     children: [
       { path: 'appointments', component: ClientAppointmentsComponent },
-      { path: '', redirectTo: 'appointments', pathMatch: 'full' },
       { path: 'profil', component: ClientProfileComponent },
+      { path: 'payments', component: ClientPaymentsComponent },
+      { path: '', redirectTo: 'appointments', pathMatch: 'full' },
     ],
   },
 ];

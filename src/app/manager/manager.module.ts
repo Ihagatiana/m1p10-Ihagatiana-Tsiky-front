@@ -9,6 +9,7 @@ import { ManagerLayoutComponent } from './manager-layout/manager-layout.componen
 import { EmployesComponent } from './pages/employes/employes.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { ManagerServicesComponent } from './pages/manager-services/manager-services.component';
+import { ManagerPaymentsComponent } from './pages/manager-payments/manager-payments.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ManagerServicesComponent } from './pages/manager-services/manager-servi
     EmployesComponent,
     StatisticsComponent,
     ManagerServicesComponent,
+    ManagerPaymentsComponent,
   ],
   imports: [
     CommonModule,

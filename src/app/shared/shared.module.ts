@@ -61,6 +61,7 @@ import { PaymentListComponent } from './components/payment/payment-list/payment-
     AppointmentListComponent,
     EmployeListComponent,
     EmployeFormComponent,
+    PaymentListComponent,
   ],
   providers: [
     ServicesService,

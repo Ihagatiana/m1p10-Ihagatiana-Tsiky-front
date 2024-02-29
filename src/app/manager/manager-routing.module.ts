@@ -1,3 +1,4 @@
+import { ManagerPaymentsComponent } from './pages/manager-payments/manager-payments.component';
 import { ManagerServicesComponent } from './pages/manager-services/manager-services.component';
 import { EmployesComponent } from './pages/employes/employes.component';
 import { ManagerLayoutComponent } from './manager-layout/manager-layout.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: 'employes', component: EmployesComponent },
       { path: 'services', component: ManagerServicesComponent },
       { path: 'statistics', component: StatisticsComponent },
+      { path: 'payments', component: ManagerPaymentsComponent },
       { path: '', redirectTo: 'employes', pathMatch: 'full' },
       // { path: 'profil', component: ProfileComponent },
     ],
