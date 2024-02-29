@@ -10,12 +10,14 @@ import { ClientLayoutComponent } from './client-layout/client-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { ClientAppointmentsComponent } from './pages/client-appointments/client-appointments.component';
 import { ClientProfileComponent } from './pages/client-profile/client-profile.component';
+import { ClientPaymentsComponent } from './pages/client-payments/client-payments.component';
 
 @NgModule({
   declarations: [
     ClientLayoutComponent,
     ClientAppointmentsComponent,
     ClientProfileComponent,
+    ClientPaymentsComponent,
   ],
   imports: [
     CommonModule,

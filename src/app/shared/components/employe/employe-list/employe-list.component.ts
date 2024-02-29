@@ -42,7 +42,7 @@ export class EmployeListComponent {
         this.employes = response.data;
         this.total.next(response.total);
         this.loading = false;
-      });
+      }, ()=>this.loading = false);
   }
   onPaginate(page: number) {
     this.page.next(page);

@@ -1,1 +1,149 @@
-<p>payment-list works!</p>
+<div class="sm:px-6 w-[1500px]">
+  <app-loader
+    [loading]="loading"
+    spinnerClassName="border-blue-400"
+  ></app-loader>
+  <div class="px-4 md:px-10 py-4 md:py-7">
+    <div class="flex items-center justify-between">
+      <p
+        tabindex="0"
+        class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
+      >
+        Paiements
+      </p>
+    </div>
+  </div>
+  <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+    <div class="overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <thead>
+          <tr class="focus:outline-none h-16 rounded">
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Service</p>
+              </div>
+            </th>
+            <th
+              *ngIf="role === 'manager'"
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Client</p>
+              </div>
+            </th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Date de paiement</p>
+              </div>
+            </th>
+
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Montant</p>
+              </div>
+            </th>
+            <th
+            *ngIf="role === 'manager'"
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Commission</p>
+              </div>
+            </th>
+            <th
+            *ngIf="role === 'manager'"
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">
+                  Montant de la commission
+                </p>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let payment of payments"
+            tabindex="0"
+            class="focus:outline-none h-16 border border-gray-100 rounded"
+          >
+            <td class="px-6">
+              <div class="flex items-center pl-5">
+                <p
+                  class="text-base font-medium leading-none text-gray-700 mr-2"
+                >
+                  {{ payment.appservice?.services.name ?? "N/A" }}
+                </p>
+              </div>
+            </td>
+            <td *ngIf="role === 'manager'" class="px-6">
+              <div class="flex items-center pl-5">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{ payment.clients?.name ?? "N/A" }}
+                </p>
+              </div>
+            </td>
+            <td class="px-6">
+              <div class="flex items-center pl-5">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{ payment.date ? (payment.date | date : 'dd/MM/yyyy') : "N/A" }}
+                </p>
+              </div>
+            </td>
+            <td class="px-6">
+              <div class="flex items-center">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{
+                    payment.appservices?.services?.price
+                      ? payment.appservices?.services?.price + " Ar"
+                      : "N/A"
+                  }}
+                </p>
+              </div>
+            </td>
+            <td *ngIf="role === 'manager'" class="px-6">
+              <div class="flex items-center">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{
+                    payment.appservices?.services?.comission
+                      ? payment.appservices?.services?.comission + " %"
+                      : "N/A"
+                  }}
+                </p>
+              </div>
+            </td>
+
+            <td *ngIf="role === 'manager'" class="px-6">
+              <div class="flex items-center">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{
+                    payment.appservices?.services?.comission &&
+                    payment.appservices?.services?.price
+                      ? (payment.appservices?.services?.price *
+                          payment.appservices?.services?.comission) /
+                          100 +
+                        " Ar"
+                      : "N/A"
+                  }}
+                </p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-pagination
+        (onPaginate)="onPaginate($event)"
+        [totalElements]="total.value"
+        [elementPerPage]="elementPerPage"
+        [pageNumbers]="pageNumbers"
+      />
+    </div>
+  </div>
+</div>
