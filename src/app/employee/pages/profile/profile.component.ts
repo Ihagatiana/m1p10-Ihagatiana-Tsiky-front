@@ -12,6 +12,9 @@ export class ProfileComponent {
   fileRetrieved: File | null = null;
   file: File | null = null;
   form: FormGroup;
+  src =
+    localStorage.getItem('photo') ??
+    'https://images.unsplash.com/photo-1611867967135-0faab97d1530?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1352&amp;q=80';
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -28,7 +31,7 @@ export class ProfileComponent {
   }
 
   initForm() {
-    this.loading = true
+    this.loading = true;
     const profile_id = localStorage.getItem('profile_id');
     if (profile_id) {
       this.profilService.getById(decodeURIComponent(profile_id)).subscribe(
