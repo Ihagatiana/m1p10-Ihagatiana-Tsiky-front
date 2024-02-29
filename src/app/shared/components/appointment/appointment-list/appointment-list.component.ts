@@ -118,4 +118,15 @@ export class AppointmentListComponent {
     this.page.next(page);
     this.fetchAll();
   }
+
+  validateOne(ids: string) {
+    this.loading = true;
+    this.service.validate([ids]).subscribe(
+      () => {
+        this.loading = false;
+        this.fetchEmploye();
+      },
+      () => (this.loading = false)
+    );
+  }
 }

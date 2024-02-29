@@ -48,4 +48,10 @@ export class AppointmentService {
       data
     );
   }
+
+  validate(ids: string[]) {
+    return this.httpService.put<any>(`${this.base_url}/appservices/validate`, {
+      appointmentIds: ids,
+    });
+  }
 }
