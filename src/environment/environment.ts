@@ -4,6 +4,6 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://m1p11-ihagatiana-tsiky-front.onrender.com',
   // baseUrl: 'https://beautysalon-belh.onrender.com',
 };
