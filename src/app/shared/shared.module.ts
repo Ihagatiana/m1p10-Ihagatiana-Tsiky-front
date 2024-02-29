@@ -1,3 +1,4 @@
+import { PaymentService } from './components/payment/payment.service';
 import { AuthServiceService } from './services/auth-service.service';
 import { PaginationComponent } from './../components/pagination/pagination.component';
 import { DragNDropComponent } from './../components/drag-n-drop/drag-n-drop.component';
@@ -23,6 +24,7 @@ import { ServiceDetailsComponent } from './components/services/service-details/s
 import { EmployeListComponent } from './components/employe/employe-list/employe-list.component';
 import { EmployeFormComponent } from './components/employe/employe-form/employe-form.component';
 import { EmployeService } from './components/employe/employe.service';
+import { PaymentListComponent } from './components/payment/payment-list/payment-list.component';
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import { EmployeService } from './components/employe/employe.service';
     ServiceDetailsComponent,
     EmployeListComponent,
     EmployeFormComponent,
+    PaymentListComponent,
   ],
   exports: [
     NavBarComponent,
@@ -63,6 +66,7 @@ import { EmployeService } from './components/employe/employe.service';
     ServicesService,
     AppointmentService,
     EmployeService,
+    PaymentService,
   ],
 })
 export class SharedModule {}
