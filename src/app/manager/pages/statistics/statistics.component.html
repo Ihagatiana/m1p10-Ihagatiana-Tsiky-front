@@ -1,57 +1,151 @@
-<app-paper>
-  <!-- <div class="flex justify-center items-center">
-    <div class="w-[800px]">
-      <canvas id="bar_chart"></canvas>
-    </div>
-    <div class="w-[800px]">
-      <canvas id="line_chart"></canvas>
-    </div>
-    <div></div>
-  </div> -->
-  <div class="flex justify-center bg-gray-100  p-5">
-    <!--==== frist div begins here ====--->
+<div class="ml-56 max-h-">
+  <div class="flex justify-center bg-gray-100 p-5">
     <div class="container mr-5 mx-auto bg-white shadow-xl">
-      <div class="">
-        <div class="bg-white my-6">
-          <table class="text-left w-full border-collapse">
-            <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
-            <thead>
-              <tr>
-                <th
-                  class="py-4 px-6 bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light"
-                >
-                  Employé
-                </th>
-                <th
-                  class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light"
-                >
-                  Moyenne de temps de travail
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="let avgTimePerEmp of avgTimePerEmps"
-                class="hover:bg-grey-lighter"
+      <div class="bg-white my-6">
+        <app-loader
+          [loading]="loadAll"
+          spinnerClassName="border-blue-400"
+        ></app-loader>
+        <table class="text-left w-full border-collapse">
+          <thead>
+            <tr>
+              <th
+                class="py-4 px-6 bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light"
               >
-                <td class="py-4 px-6 border-b border-grey-light">
-                  {{ avgTimePerEmp.name }}
-                </td>
-                <td class="py-4 px-6 text-center border-b border-grey-light">
-                  {{
-                    avgTimePerEmp.avgTime.hours +
-                      ":" +
-                      avgTimePerEmp.avgTime.minutes
-                  }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                Employé
+              </th>
+              <th
+                class="py-4 px-6 text-center bg-purple-400 font-bold uppercase text-sm text-white border-b border-grey-light"
+              >
+                Moyenne de temps de travail
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let avgTimePerEmp of avgTimePerEmps"
+              class="hover:bg-grey-lighter"
+            >
+              <td class="py-4 px-6 border-b border-grey-light">
+                {{ avgTimePerEmp.name }}
+              </td>
+              <td class="py-4 px-6 text-center border-b border-grey-light">
+                {{
+                  avgTimePerEmp.avgTime.hours +
+                    ":" +
+                    avgTimePerEmp.avgTime.minutes
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+    <div class="container mr-5 mx-auto bg-white shadow-xl p-5">
+      <app-loader
+        [loading]="loadBenefits"
+        spinnerClassName="border-blue-400"
+      ></app-loader>
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="md:flex flex-row md:space-x-4 w-full text-xs">
+          <div class="mb-3 space-y-2 w-full text-xs">
+            <label class="font-semibold text-gray-600 py-2"
+              >Salaires <abbr title="required">*</abbr></label
+            >
+            <input
+              placeholder="Salaire"
+              class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              required="required"
+              type="number"
+              name="salary"
+              id="salary"
+              min="1"
+              formControlName="salary"
+            />
+          </div>
+          <div class="mb-3 space-y-2 w-full text-xs">
+            <label class="font-semibold text-gray-600 py-2"
+              >Loyer <abbr title="required">*</abbr></label
+            >
+            <input
+              placeholder="Loyer"
+              class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              required="required"
+              type="number"
+              name="rent"
+              id="rent"
+              min="1"
+              formControlName="rent"
+            />
+          </div>
+        </div>
+        <div class="md:flex flex-row md:space-x-4 w-full text-xs">
+          <div class="mb-3 space-y-2 w-full text-xs">
+            <label class="font-semibold text-gray-600 py-2"
+              >Achats <abbr title="required">*</abbr></label
+            >
+            <input
+              placeholder="Achats"
+              class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              required="required"
+              type="number"
+              name="purchases"
+              id="purchases"
+              min="1"
+              formControlName="purchases"
+            />
+          </div>
+          <div class="mb-3 space-y-2 w-full text-xs">
+            <label class="font-semibold text-gray-600 py-2"
+              >Autres dépenses <abbr title="required">*</abbr></label
+            >
+            <input
+              placeholder="Autres dépenses"
+              class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+              required="required"
+              type="number"
+              name="expenses"
+              id="expenses"
+              min="1"
+              formControlName="expenses"
+            />
+          </div>
+        </div>
+        <div
+          class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse"
+        >
+          <button
+            type="button"
+            (click)="resetForm()"
+            class="mb-2 md:mb-0 bg-slate-500 hover:bg-slate-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg"
+          >
+            Reset
+          </button>
+          <button
+            type="submit"
+            class="mb-2 md:mb-0 bg-blue-500 hover:bg-blue-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg"
+          >
+            Générer
+          </button>
+        </div>
+      </form>
+      <canvas id="line_chart-benefits"></canvas>
+    </div>
   </div>
-  <div class="flex bg-gray-100 p-5 ">
-    <canvas id="line_chart"></canvas>
+  <div class="flex justify-center bg-gray-100 px-5">
+    <div class="container mr-5 mx-auto bg-white shadow-xl">
+      <app-loader
+        [loading]="loadAll"
+        spinnerClassName="border-blue-400"
+      ></app-loader>
+      <canvas id="line_chart"></canvas>
+    </div>
+    <div class="container mr-5 mx-auto bg-white shadow-xl">
+      <app-loader
+        [loading]="loadAll"
+        spinnerClassName="border-blue-400"
+      ></app-loader>
+      <canvas id="line_chart-ca"></canvas>
+    </div>
   </div>
-</app-paper>
+</div>
