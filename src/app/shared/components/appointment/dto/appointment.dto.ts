@@ -1,6 +1,7 @@
 import { Time } from '@angular/common';
 
 export type ReponseAppointment = {
+  _id :string
   appointments?: {
     clients?: {
       name: string;
@@ -17,6 +18,7 @@ export type ReponseAppointment = {
     price: number;
   };
   employes?: any;
+  states: number
 };
 
 export type CreateAppointmentDto = {
