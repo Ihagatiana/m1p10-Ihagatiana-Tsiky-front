@@ -65,7 +65,20 @@
                 <p class="leading-none text-gray-700 mr-2">Heure de fin</p>
               </div>
             </th>
-            <th></th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">Montant</p>
+              </div>
+            </th>
+            <th
+              class="px-6 bg-slate-300 text-slate-700 border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold"
+            >
+              <div class="flex items-center pl-5">
+                <p class="leading-none text-gray-700 mr-2">État</p>
+              </div>
+            </th>
             <th></th>
           </tr>
         </thead>
@@ -128,9 +141,16 @@
                 </p>
               </div>
             </td>
+            <td class="px-6">
+              <div class="flex items-center">
+                <p class="text-sm leading-none text-gray-600 ml-2">
+                  {{ appointment.services?.price? appointment.services?.price + " Ar" : "N/A" }}
+                </p>
+              </div>
+            </td>
             <td class="pl-5">
               <span
-                class="py-3 px-3 text-sm focus:outline-none leading-none rounded"
+                class="w-52 py-3 px-3 text-sm focus:outline-none leading-none rounded"
                 [class.bg-orange-100]="appointment.states === 1"
                 [class.bg-green-100]="appointment.states === 5"
                 [class.bg-blue-100]="appointment.states === 11"
@@ -151,17 +171,22 @@
               <button
                 *ngIf="role === 'employe' && appointment.states === 1"
                 (click)="validateOne(appointment._id)"
-                class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-blue-100 rounded hover:bg-blue-200 focus:outline-none"
+                class="h-10 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
               >
+              <p class="text-sm font-medium leading-none text-white">
                 Valider
+              </p>
               </button>
 
               <button
                 *ngIf="role === 'client' && appointment.states === 5"
                 (click)="pay(appointment._id)"
-                class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-blue-100 rounded hover:bg-blue-200 focus:outline-none"
+                class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
               >
+              <p class="text-sm font-medium leading-none text-white">
                 Payer
+              </p>
+
               </button>
             </td>
           </tr>
